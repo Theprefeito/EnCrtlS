@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,6 +13,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     public bool inFloor;
     private float jumpNumber;
+    
+    
+    //Componentes para o Dash
+    private bool canDash = true;
+    private bool isDashing;
+    public float dashPower = 12f;
+    public float dashTime = 0.2f;
+    private float dashCooldowm = 1f;
+    [SerializeField] private TrailRenderer tr;
+    
 
     void Start()
     {
@@ -41,11 +52,29 @@ public class PlayerMovement : MonoBehaviour
         {
             rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
         }
+
+
+        if (isDashing)
+
+        {
+            return;
+        }
+       
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+        
     }
 
     private void FixedUpdate()
     {
         Move();
+        if (isDashing)
+        {
+            return;
+        }
+
     }
 
     void Move()
@@ -54,4 +83,41 @@ public class PlayerMovement : MonoBehaviour
         transform.position += movement * Time.deltaTime * speedPlayer;
     }
 
+    
+    
+     private IEnumerator Dash()
+    {
+        
+        canDash = false;
+        isDashing = true;
+        
+        Vector2 directionDash = new Vector2(Input.GetAxis("Horizontal"), 0f);
+
+        if (directionDash == Vector2.zero)
+        {
+           directionDash = new Vector2(transform.localScale.x, 0f);
+        }
+        
+        
+        float originalGravity = rigPlayer.gravityScale;
+        rigPlayer.gravityScale = 0f;
+        rigPlayer.linearVelocity = Vector2.zero;
+        rigPlayer.linearVelocity = (directionDash * dashPower);
+        tr.emitting = true;
+        
+        yield return new WaitForSeconds(dashTime);
+        tr.emitting = false;
+        rigPlayer.linearVelocity = Vector2.zero;
+        
+        rigPlayer.gravityScale = originalGravity;
+        isDashing = false;
+        
+        yield return new WaitForSeconds(dashCooldowm);
+        canDash = true;
+    }
+    
+    
+    
+    
+    
 }
