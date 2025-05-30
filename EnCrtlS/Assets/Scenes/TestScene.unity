@@ -832,16 +832,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4427619ff69b31e4b8e2b5dd83df29ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedPlayer: 3
-  jumpStrange: 10
+  speedPlayer: 5
+  jumpStrange: 8
   groundCheck: {fileID: 1479066474}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   inFloor: 0
+  tr: {fileID: 1809693184}
   dashPower: 7
   dashTime: 0.2
-  tr: {fileID: 1809693184}
 --- !u!96 &1809693184
 TrailRenderer:
   serializedVersion: 3

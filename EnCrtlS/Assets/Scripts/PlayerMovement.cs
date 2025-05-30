@@ -12,17 +12,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
     public bool inFloor;
-    private float jumpNumber;
-    
-    
-    //Componentes para o Dash
+    public int jumpNumber;
+
+    [Header("Dash")]
+    [SerializeField] private TrailRenderer tr;
     private bool canDash = true;
     private bool isDashing;
     public float dashPower = 12f;
     public float dashTime = 0.2f;
     private float dashCooldowm = 1f;
-    [SerializeField] private TrailRenderer tr;
-    
+   
 
     void Start()
     {
@@ -35,20 +34,19 @@ public class PlayerMovement : MonoBehaviour
         inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer);
         Debug.DrawLine(transform.position, groundCheck.position, Color.cyan);
 
-        /*
-        if (inFloor)
+        if (inFloor) 
         {
             jumpNumber = 1;
         }
-        */
 
-        if (Input.GetKeyDown(KeyCode.Space) && inFloor)
+
+        if (Input.GetKeyDown(KeyCode.C) && jumpNumber > 0)
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
-            jumpNumber = jumpNumber - 1;
+            jumpNumber--;
         }
 
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.C))
         {
             rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
         }
@@ -60,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
        
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (Input.GetKeyDown(KeyCode.X) && canDash)
         {
             StartCoroutine(Dash());
         }
@@ -81,12 +79,26 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * speedPlayer;
+
+        if (Input.GetAxis("Horizontal") > 0f)
+        {
+           
+            GetComponent<SpriteRenderer>().flipX = false;
+
+        }
+       
+        if (Input.GetAxis("Horizontal") < 0f)
+        {
+           
+            GetComponent<SpriteRenderer>().flipX = true;
+
+        }
     }
 
     
     
      private IEnumerator Dash()
-    {
+     {
         
         canDash = false;
         isDashing = true;
@@ -114,7 +126,8 @@ public class PlayerMovement : MonoBehaviour
         
         yield return new WaitForSeconds(dashCooldowm);
         canDash = true;
-    }
+    
+     }
     
     
     
