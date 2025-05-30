@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (inFloor) 
         {
-            jumpNumber = 1;
+            jumpNumber = 2;
         }
 
 
