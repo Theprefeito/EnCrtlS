@@ -13,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpStrange;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] int jumpNumber;
     public bool inFloor;
-    public int jumpNumber;
+    public bool isDoubleJump;
 
     [Header("Dash")]
     [SerializeField] private TrailRenderer tr;
@@ -37,26 +38,9 @@ public class PlayerMovement : MonoBehaviour
         inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer);
         Debug.DrawLine(transform.position, groundCheck.position, Color.cyan);
 
-        if (inFloor) 
-        {
-            jumpNumber = 2;
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.C) && jumpNumber > 0)
-        {
-            rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
-            jumpNumber--;
-        }
-
-        else if (Input.GetKeyUp(KeyCode.C))
-        {
-            rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
-        }
-
-
+        Jump();
+              
         if (isDashing)
-
         {
             return;
         }
@@ -98,7 +82,36 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
+    void Jump()
+    {
+        if (inFloor)
+        {
+            jumpNumber = 2;
+        }
+       
+        if (Input.GetKeyDown(KeyCode.C) && jumpNumber > 0)
+        {            
+            if (!isDoubleJump) 
+            {
+                rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
+                isDoubleJump = true;
+                jumpNumber--;
+            }
+
+            if (isDoubleJump)
+            {
+                rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
+                isDoubleJump = false;
+                jumpNumber = 0;
+            }
+        }
+
+        else if (Input.GetKeyUp(KeyCode.C))
+        {
+            rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
+        }
+        
+    }
     
      private IEnumerator Dash()
      {
