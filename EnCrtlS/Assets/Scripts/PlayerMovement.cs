@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -25,7 +26,15 @@ public class PlayerMovement : MonoBehaviour
     public float dashTime = 0.2f;
     private float dashCooldowm = 1f;
    
-
+    
+    
+    [Header("Faster Fall")]
+    private float normalFallSpeed = 1f; 
+    private float fastFallSpeed = 20f;
+    
+    
+    
+    
     void Start()
     {
         rigPlayer = GetComponent<Rigidbody2D>();
@@ -50,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
         
+        FastFall();
     }
 
     private void FixedUpdate()
@@ -59,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-
+        FastFall();
     }
 
     void Move()
@@ -112,6 +122,26 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
+
+
+    void FastFall()
+    {
+      
+       
+       //Agora funciona normal
+        
+        if (rigPlayer.linearVelocity.y < 0 && Input.GetKey(KeyCode.S))
+        {
+          rigPlayer.linearVelocity += Vector2.up * Physics2D.gravity.y * (fastFallSpeed - 1) * Time.deltaTime;
+        }
+        
+       
+        
+    }
+    
+    
+    
+    
     
      private IEnumerator Dash()
      {
