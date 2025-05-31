@@ -6,7 +6,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] float speedPlayer;
     private Rigidbody2D rigPlayer;
-
+    private SpriteRenderer srPlayer;
+    
+    
     [Header("Jump")]
     [SerializeField] float jumpStrange;
     [SerializeField] Transform groundCheck;
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigPlayer = GetComponent<Rigidbody2D>();
+        srPlayer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -83,14 +86,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxis("Horizontal") > 0f)
         {
            
-            GetComponent<SpriteRenderer>().flipX = false;
+           srPlayer.flipX = false;
 
         }
        
         if (Input.GetAxis("Horizontal") < 0f)
         {
            
-            GetComponent<SpriteRenderer>().flipX = true;
+           srPlayer.flipX = true;
 
         }
     }
@@ -102,19 +105,14 @@ public class PlayerMovement : MonoBehaviour
         
         canDash = false;
         isDashing = true;
-        
-        Vector2 directionDash = new Vector2(Input.GetAxis("Horizontal"), 0f);
 
-        if (directionDash == Vector2.zero)
-        {
-           directionDash = new Vector2(transform.localScale.x, 0f);
-        }
+        float directionDash = srPlayer.flipX ? -1f : 1f;
         
         
         float originalGravity = rigPlayer.gravityScale;
         rigPlayer.gravityScale = 0f;
         rigPlayer.linearVelocity = Vector2.zero;
-        rigPlayer.linearVelocity = (directionDash * dashPower);
+        rigPlayer.linearVelocity = new Vector2 (directionDash * dashPower, 0f);
         tr.emitting = true;
         
         yield return new WaitForSeconds(dashTime);
