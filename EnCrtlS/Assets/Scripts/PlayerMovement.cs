@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
        
        //Agora funciona normal
         
-        if (rigPlayer.linearVelocity.y < 0 && Input.GetKey(KeyCode.S))
+        if (rigPlayer.linearVelocity.y < 0 && Input.GetAxis("Vertical") < 0f)
         {
           rigPlayer.linearVelocity += Vector2.up * Physics2D.gravity.y * (fastFallSpeed - 1) * Time.deltaTime;
         }
