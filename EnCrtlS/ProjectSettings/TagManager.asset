@@ -41,5 +41,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4136685233
+    locked: 0
+  - name: Na frente
+    uniqueID: 2316075163
+    locked: 0
   m_RenderingLayers:
   - Default
