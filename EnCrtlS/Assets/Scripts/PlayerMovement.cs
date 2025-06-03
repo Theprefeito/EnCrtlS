@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Faster Fall")]
     private float normalFallSpeed = 1f; 
-    private float fastFallSpeed = 20f;
+    private float fastFallSpeed = 10f;
     
     
     
