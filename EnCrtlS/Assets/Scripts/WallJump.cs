@@ -29,7 +29,7 @@ public class WallJump : MonoBehaviour
 
     void CheckWallNextTo()
     {
-        onWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, groundLayer);
+        onWall = Physics2D.OverlapCircle(wallCheck.position, 0.2f, groundLayer);
     }
 
     private void CheckWallSlide()
