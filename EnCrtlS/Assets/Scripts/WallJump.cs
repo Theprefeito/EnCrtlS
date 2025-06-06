@@ -2,21 +2,36 @@ using UnityEngine;
 
 public class WallJump : MonoBehaviour
 {
+    [Header("Wall Slide")]
     [SerializeField] Transform wallCheck;
     [SerializeField] float wallCheckDistance;
     [SerializeField] float wallSlideSpeed;
-    [SerializeField] LayerMask groundLayer;
-    private PlayerMovement player;
-    private Rigidbody2D rigPlayer;
     public bool isFacingRight;
     public bool onWall;
     public bool wallSlide;
+
+    [Header("Wall Jump")]
+    private bool isWallJumping;
+    private float wallJumpingDirection;
+    private float wallJumpingTime = 0.2f;
+    private float wallJumpingCounter;
+    private float wallJumpingDuration = 0.4f;
+    private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+
+
+    [Header("Ground Layer")]
+    [SerializeField] LayerMask groundLayer;        
+    private PlayerMovement player;
+    private Rigidbody2D rigPlayer;
+    
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigPlayer = GetComponent<Rigidbody2D>();
         player = GetComponent<PlayerMovement>();
+        
     }
 
     // Update is called once per frame
@@ -50,6 +65,7 @@ public class WallJump : MonoBehaviour
             {
                 rigPlayer.linearVelocityY = -wallSlideSpeed;
             }
+
         }
     }
 
@@ -62,6 +78,7 @@ public class WallJump : MonoBehaviour
                 Vector3 attackPos = wallCheck.localPosition;
                 attackPos.x *= -1;
                 wallCheck.localPosition = attackPos;
+                
 
                 isFacingRight = false;
             }
@@ -74,11 +91,45 @@ public class WallJump : MonoBehaviour
                 Vector3 attackPos = wallCheck.localPosition;
                 attackPos.x *= -1;
                 wallCheck.localPosition = attackPos;
+                
 
                 isFacingRight = true;
             }
         }
 
+    }
+
+    private void WallJumpVoid()
+    {
+        if (wallSlide)
+        {
+            isWallJumping = false;
+            wallJumpingDirection = -transform.localScale.x;
+            wallJumpingCounter = wallJumpingTime;
+
+            CancelInvoke(nameof(StopWallJumping));
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.C) && wallJumpingCounter > 0f)
+        {
+            isWallJumping = true;
+            rigPlayer.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            wallJumpingCounter = 0f;
+
+
+
+
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+        }
+    }
+
+    private void StopWallJumping()
+    {
+        isWallJumping = false;
     }
 
     private void OnDrawGizmos()

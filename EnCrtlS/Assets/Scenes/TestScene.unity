@@ -2095,13 +2095,13 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: b2566f2f4b2693f40a2fc369ab9c2920, type: 3}
   m_Resource: {fileID: 8300000, guid: b2566f2f4b2693f40a2fc369ab9c2920, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -2210,7 +2210,6 @@ GameObject:
   - component: {fileID: 1809693185}
   - component: {fileID: 1809693184}
   - component: {fileID: 1809693186}
-  - component: {fileID: 1809693187}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2377,7 +2376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedPlayer: 5
-  jumpStrange: 8
+  jumpStrange: 11
   groundCheck: {fileID: 1479066474}
   groundLayer:
     serializedVersion: 2
@@ -2388,6 +2387,18 @@ MonoBehaviour:
   tr: {fileID: 1809693184}
   dashPower: 7
   dashTime: 0.2
+  wallCheck: {fileID: 17730363}
+  wallCheckDistance: 0.8
+  wallSlideSpeed: 5
+  isFacingRight: 0
+  onWall: 0
+  wallSlide: 0
+  wallJumpingDirection: 0
+  wallJumpingTime: 0.2
+  wallJumpingCounter: 0
+  wallJumpingDuration: 0.4
+  wallJumpingPower: {x: 8, y: 8}
+  flipado: 0
 --- !u!96 &1809693184
 TrailRenderer:
   serializedVersion: 3
@@ -2534,27 +2545,6 @@ MonoBehaviour:
   attackCheck: {fileID: 370137531}
   ammunition: 1
   isFacingRight: 0
---- !u!114 &1809693187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809693177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66aedf0b53b69964c84ac35565d3dff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallCheck: {fileID: 17730363}
-  wallCheckDistance: 0.4
-  wallSlideSpeed: 2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  isFacingRight: 0
-  onWall: 0
-  wallSlide: 0
 --- !u!1 &1832470932
 GameObject:
   m_ObjectHideFlags: 0

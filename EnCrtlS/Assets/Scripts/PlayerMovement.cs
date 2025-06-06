@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -31,10 +32,25 @@ public class PlayerMovement : MonoBehaviour
     [Header("Faster Fall")]
     private float normalFallSpeed = 1f; 
     private float fastFallSpeed = 10f;
-    
-    
-    
-    
+
+
+    [Header("Wall Slide")]
+    [SerializeField] Transform wallCheck;
+    [SerializeField] float wallCheckDistance;
+    [SerializeField] float wallSlideSpeed;
+    public bool isFacingRight;
+    public bool onWall;
+    public bool wallSlide;
+
+    [Header("Wall Jump")]    
+    [SerializeField] float wallJumpingDirection;
+    [SerializeField] float wallJumpingTime = 0.2f;
+    [SerializeField] float wallJumpingCounter;
+    [SerializeField] float wallJumpingDuration = 0.4f;
+    [SerializeField] Vector2 wallJumpingPower;
+    public bool flipado;
+    private bool isWallJumping;
+
     void Start()
     {
         rigPlayer = GetComponent<Rigidbody2D>();
@@ -44,10 +60,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer);
-        Debug.DrawLine(transform.position, groundCheck.position, Color.cyan);
+        inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer); //aqui define quando o player está no chão
+        Debug.DrawLine(transform.position, groundCheck.position, Color.cyan); // aqui desenha uma linha no debug apenas
 
-        Jump();
+        Jump(); //esse é o void Jump
               
         if (isDashing)
         {
@@ -58,65 +74,76 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
-        
+
+        if (!isWallJumping)
+        {
+            Flip();
+        }
+
         FastFall();
     }
 
     private void FixedUpdate()
     {
-        Move();
+        Move();        
+        FastFall();
+        CheckWallNextTo();
+        CheckWallSlide();
+        WallJump();
+        
+
         if (isDashing)
         {
             return;
         }
-        FastFall();
+    
     }
 
     void Move()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += movement * Time.deltaTime * speedPlayer;
+        
+            Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+            transform.position += movement * Time.deltaTime * speedPlayer;
+        
+       
 
         if (Input.GetAxis("Horizontal") > 0f)
         {
            
-           srPlayer.flipX = false;
-
+           srPlayer.flipX = false; //Flipa o player para a direita
+            flipado = false;
+            wallJumpingDirection = -1f;
         }
        
         if (Input.GetAxis("Horizontal") < 0f)
         {
            
-           srPlayer.flipX = true;
-
+           srPlayer.flipX = true; //Flipa o player para a esquerda
+            flipado = true;
+            wallJumpingDirection = 1f;
         }
     }
 
     void Jump()
     {
+        /*
         if (inFloor)
         {
             jumpNumber = 2;
         }
-       
-        if (Input.GetKeyDown(KeyCode.C) && jumpNumber > 0)
-        {            
-            if (!isDoubleJump) 
-            {
-                rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
-                isDoubleJump = true;
-                jumpNumber--;
-            }
+       */
 
-            if (isDoubleJump)
-            {
-                rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
-                isDoubleJump = false;
-                jumpNumber = 0;
-            }
+        
+        if (Input.GetButtonDown("Jump") && inFloor)
+        {
+            rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
+            isDoubleJump = true;
+            jumpNumber--;
         }
 
-        else if (Input.GetKeyUp(KeyCode.C))
+
+
+        else if (Input.GetButtonUp("Jump"))
         {
             rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
         }
@@ -169,9 +196,113 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     
      }
-    
-    
-    
-    
-    
+
+
+    void CheckWallNextTo()
+    {
+        onWall = Physics2D.OverlapCircle(wallCheck.position, 0.2f, groundLayer);
+    }
+
+    private void CheckWallSlide()
+    {
+        if (onWall && inFloor == false && rigPlayer.linearVelocity.y < 0 && Input.GetAxis("Horizontal") != 0f)
+        {
+            wallSlide = true;
+        }
+
+        else
+        {
+            wallSlide = false;
+        }
+
+        if (wallSlide)
+        {
+            if (rigPlayer.linearVelocity.y < -wallSlideSpeed)
+            {
+                rigPlayer.linearVelocityY = -wallSlideSpeed;
+            }
+
+        }
+    }
+
+    void Flip()
+    {
+        if (Input.GetAxis("Horizontal") > 0f)
+        {
+            if (isFacingRight)
+            {
+                Vector3 attackPos = wallCheck.localPosition;
+                attackPos.x *= -1;
+                wallCheck.localPosition = attackPos;
+
+
+                isFacingRight = false;
+            }
+        }
+
+        if (Input.GetAxis("Horizontal") < 0f)
+        {
+            if (!isFacingRight)
+            {
+                Vector3 attackPos = wallCheck.localPosition;
+                attackPos.x *= -1;
+                wallCheck.localPosition = attackPos;
+
+
+                isFacingRight = true;
+            }
+        }
+
+    }
+
+    private void WallJump()
+    {
+        if (inFloor)
+        {
+            wallJumpingCounter = -1f;
+        }
+        
+        if (wallSlide)
+        {
+            isWallJumping = false;
+           // wallJumpingDirection = -transform.localScale.x;
+            wallJumpingCounter = wallJumpingTime;
+
+            CancelInvoke(nameof(StopWallJumping));
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+
+        if (Input.GetButton("Jump") && wallJumpingCounter > 0f && !inFloor)
+        {
+            isWallJumping = true;
+            rigPlayer.linearVelocity = Vector2.zero;
+            rigPlayer.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            wallJumpingCounter = 0f;
+
+            if (transform.localScale.x != wallJumpingDirection)
+            {
+                flipado = !flipado;
+                if (flipado)
+                {
+                    srPlayer.flipX = true;
+                }
+            
+                else if (!flipado)
+                {
+                    srPlayer.flipX = false;
+                }
+            }
+
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+        }
+    }
+
+    private void StopWallJumping()
+    {
+        isWallJumping = false;
+    }
+
 }
