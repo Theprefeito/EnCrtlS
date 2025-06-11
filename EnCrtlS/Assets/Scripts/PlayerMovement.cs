@@ -80,12 +80,19 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
 
+        /*
+        if (!isWallJumping)
+        {
+           
+        }
+        */
+
         FastFall();
     }
 
     private void FixedUpdate()
     {
-        Move();        
+        Move();
         FastFall();
         CheckWallNextTo();
         CheckWallSlide();
@@ -303,6 +310,24 @@ public class PlayerMovement : MonoBehaviour
     private void StopWallJumping()
     {
         isWallJumping = false;
+    }
+
+
+    //Essas duas funções são para manter o Player na Plataforma
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Platform")
+        {
+            this.transform.parent = collision.transform;
+        }    
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            this.transform.parent = null;
+        }
     }
 
 }
