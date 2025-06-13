@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Faster Fall")]
     private float normalFallSpeed = 1f; 
-    private float fastFallSpeed = 10f;
-
+    private float fastFallSpeed = 4f;
+    //Criar uma vÃ¡riavel para controlar velocidade mÃ¡xima de queda do player, para nÃ£o bugar no chÃ£o por causa de velocidades extremas
 
     [Header("Wall Slide")]
     [SerializeField] Transform wallCheck;
@@ -60,10 +60,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer); //aqui define quando o player está no chão
+        inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer); //aqui define quando o player estï¿½ no chï¿½o
         Debug.DrawLine(transform.position, groundCheck.position, Color.cyan); // aqui desenha uma linha no debug apenas
 
-        Jump(); //esse é o void Jump
+        Jump(); //esse ï¿½ o void Jump
               
         if (isDashing)
         {
@@ -313,7 +313,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //Essas duas funções são para manter o Player na Plataforma
+    //Essas duas funï¿½ï¿½es sï¿½o para manter o Player na Plataforma
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Platform")
