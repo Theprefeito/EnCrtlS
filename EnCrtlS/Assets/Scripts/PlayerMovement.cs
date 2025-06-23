@@ -226,7 +226,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (rigPlayer.linearVelocity.y < -wallSlideSpeed)
             {
-                rigPlayer.linearVelocityY = -wallSlideSpeed;
+                rigPlayer.linearVelocityY = -wallSlideSpeed * Time.deltaTime;
             }
 
         }

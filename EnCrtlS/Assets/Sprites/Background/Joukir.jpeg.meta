@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Joukir_0: 8862816369831031920
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

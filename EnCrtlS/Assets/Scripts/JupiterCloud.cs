@@ -5,9 +5,9 @@ public class JupiterCloud : MonoBehaviour
 {
     [SerializeField] GameObject cloud;
     [SerializeField] Transform attackCheck;
-    [SerializeField] float ammunition;
+    public float ammunition;
     public bool isFacingRight;
-    
+    public bool isReset = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +20,7 @@ public class JupiterCloud : MonoBehaviour
     {
         MecanicaDeJupiter();
         Flip();
+
     }
 
     void MecanicaDeJupiter()
@@ -58,4 +59,5 @@ public class JupiterCloud : MonoBehaviour
         }
 
     }
+
 }

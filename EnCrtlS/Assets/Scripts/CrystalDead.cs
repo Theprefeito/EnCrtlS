@@ -1,0 +1,34 @@
+using UnityEngine;
+
+public class CrystalDead : MonoBehaviour
+{
+    [SerializeField] string tagPlayer;
+    JupiterCloud jupiter;
+    
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        jupiter = GetComponent<JupiterCloud>();    
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(tagPlayer))
+        {
+            // Aqui você pode aplicar o efeito do power-up:
+            // exemplo: dar vida, velocidade, pulo duplo etc.
+            //Debug.Log("Power-up coletado!");
+            collision.GetComponent<JupiterCloud>().ammunition = 1;
+
+            // Destroi o power-up
+            Destroy(gameObject);
+        }
+    }
+
+}

@@ -8,7 +8,7 @@ public class MainMenuMenager : MonoBehaviour
     [SerializeField] string mainMenuScene;
     [SerializeField] GameObject panelMainMenu;
     [SerializeField] GameObject panelOptions;
-
+    [SerializeField] GameObject gameName;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,12 +40,14 @@ public class MainMenuMenager : MonoBehaviour
     public void Options()
     {
         panelMainMenu.SetActive(false);
+        gameName.SetActive(false);
         panelOptions.SetActive(true);
     }
 
     public void ClosedOptions()
     {
         panelMainMenu.SetActive(true );
+        gameName.SetActive(true);
         panelOptions.SetActive(false);
     }
 
