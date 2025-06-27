@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * speedPlayer;
 
-        float speedForAnimations = Input.GetAxis("Horizontal");
+        float speedForAnimations = Input.GetAxis("Horizontal"); //é usado apenas usado neste caso
         animPlayer.SetFloat("Speed", math.abs(speedForAnimations));
 
         if (Input.GetAxis("Horizontal") > 0f)

@@ -5,7 +5,8 @@ public class DeathAbyss : MonoBehaviour
 {
     public float limitsX;
     public float limitsY;
-    
+    [SerializeField] GameObject respawnPoint;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,7 +28,7 @@ public class DeathAbyss : MonoBehaviour
         
         if (transform.position.y < limitsY)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            transform.position = respawnPoint.transform.position;
         }
     }
 }
