@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
@@ -9,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedPlayer;
     private Rigidbody2D rigPlayer;
     private SpriteRenderer srPlayer;
-    
+    private Animator animPlayer;
     
     [Header("Jump")]
     [SerializeField] float jumpStrange;
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigPlayer = GetComponent<Rigidbody2D>();
         srPlayer = GetComponent<SpriteRenderer>();
+        animPlayer = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -109,10 +111,11 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         
-            Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-            transform.position += movement * Time.deltaTime * speedPlayer;
-        
-       
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        transform.position += movement * Time.deltaTime * speedPlayer;
+
+        float speedForAnimations = Input.GetAxis("Horizontal");
+        animPlayer.SetFloat("Speed", math.abs(speedForAnimations));
 
         if (Input.GetAxis("Horizontal") > 0f)
         {
