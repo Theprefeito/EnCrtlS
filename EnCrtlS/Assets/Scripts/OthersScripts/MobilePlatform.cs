@@ -5,7 +5,9 @@ public class MobilePlatform : MonoBehaviour
     [SerializeField] float platformSpeed;
     [SerializeField] Transform pointA;
     [SerializeField] Transform pointB;
+    [SerializeField] Transform player;
 
+    public Vector3 startPosition;
     public bool isVertical; //deve ser definido no inspector
     public bool moveDown;
     public bool moveRight;
@@ -13,7 +15,7 @@ public class MobilePlatform : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -31,7 +33,10 @@ public class MobilePlatform : MonoBehaviour
             Horizontal();
         }
      
-
+        if(player.transform.position.y < -7)
+        {
+            Reset();
+        }
     }
 
 
@@ -82,4 +87,8 @@ public class MobilePlatform : MonoBehaviour
 
     }
 
+    private void Reset()
+    {
+        transform.position = startPosition;
+    }
 }

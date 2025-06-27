@@ -20,7 +20,7 @@ public class JupiterCloud : MonoBehaviour
     {
         MecanicaDeJupiter();
         Flip();
-
+        Reset();
     }
 
     void MecanicaDeJupiter()
@@ -60,4 +60,11 @@ public class JupiterCloud : MonoBehaviour
 
     }
 
+    private void Reset()
+    {
+        if (transform.position.y < -6)
+        {
+            ammunition = 1;
+        }
+    }
 }

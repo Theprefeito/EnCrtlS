@@ -1,20 +1,27 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CrystalDead : MonoBehaviour
 {
     [SerializeField] string tagPlayer;
+    [SerializeField] Transform player;
+    [SerializeField] Vector3 startPosition;
     JupiterCloud jupiter;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        startPosition = transform.position;
         jupiter = GetComponent<JupiterCloud>();    
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (player.transform.position.y < -6)
+        {
+            transform.position = startPosition;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +34,7 @@ public class CrystalDead : MonoBehaviour
             collision.GetComponent<JupiterCloud>().ammunition = 1;
 
             // Destroi o power-up
-            Destroy(gameObject);
+            transform.position = new Vector3(-800, -800, 0);
         }
     }
 
