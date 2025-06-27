@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88edaccd6d3f0014794707e374ab3d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceTrampoline: 10
+  forceTrampoline: 13
 --- !u!114 &1059002969313243795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,4 +228,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887251889f1cff2409e9681025700d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDie: 2
+  timeToDie: 6

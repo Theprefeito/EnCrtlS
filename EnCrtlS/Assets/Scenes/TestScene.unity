@@ -536,6 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 175665408}
   - component: {fileID: 175665409}
+  - component: {fileID: 175665410}
   m_Layer: 0
   m_Name: Layer background 1
   m_TagString: Untagged
@@ -572,6 +573,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420032}
   efectParallax: 0.7
+--- !u!114 &175665410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175665407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef35db9483698f45a3a4c0f8c0adc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  efectParallax: 0.2
 --- !u!1 &179013352
 GameObject:
   m_ObjectHideFlags: 0
