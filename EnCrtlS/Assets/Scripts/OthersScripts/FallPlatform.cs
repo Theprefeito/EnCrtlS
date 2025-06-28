@@ -4,8 +4,7 @@ using UnityEngine;
 public class FallPlatform : MonoBehaviour
 {
 
-    //Se colocar 0 de tempo cai na hora, dá pra fazer vários tipos dessa plataforma com o mesmo script
-
+   
 
     public float Timetofall = 0.3f;
     public float Timetodestroy = 1.5f;
@@ -18,7 +17,7 @@ public class FallPlatform : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
 
-
+    private Vector3 initPos;
 
 
 
@@ -37,7 +36,6 @@ public class FallPlatform : MonoBehaviour
         {
             StartCoroutine(FallthePlatform());
             Fall = true;
-            
         }
 
       
@@ -48,26 +46,33 @@ public class FallPlatform : MonoBehaviour
     
     void Start()
     {
-        
+        initPos = transform.position;
     }
 
     
     void Update()
     {
-        if (Fall)
-        {
-           Timetodestroy -= Time.deltaTime;  
-        }
-
-        if (Timetodestroy <= 0)
-        {
-            gameObject.SetActive(false);
-        }
-
+      
         if (player.transform.position.y < -6)
         {
-            gameObject.SetActive(true);
+            if (gameObject.activeSelf)
+            {
+                Reset();
+                gameObject.SetActive(true);
+            }
         }
 
+
+       
+        
     }   
+    
+     public void Reset()
+     {
+             gameObject.SetActive(true);
+             transform.position = initPos;
+             rb.bodyType = RigidbodyType2D.Static;
+             rb.linearVelocity = Vector2.zero;
+     }
+    
 }

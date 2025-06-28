@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timetofall: 0.3
   Timetodestroy: 1.5
-  player: {fileID: 0}
+  player: {fileID: 1809693182}
   Fall: 0
   rb: {fileID: 385498440}
 --- !u!251 &385498439
@@ -4136,7 +4136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timetofall: 0.3
   Timetodestroy: 1.5
-  player: {fileID: 0}
+  player: {fileID: 1809693182}
   Fall: 0
   rb: {fileID: 2072313512}
 --- !u!251 &2072313511
