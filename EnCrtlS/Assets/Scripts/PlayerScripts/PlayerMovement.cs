@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
        
-        if (Input.GetKeyDown(KeyCode.X) && canDash)
+        if (Input.GetButtonDown("Fire2") && canDash)
         {
             StartCoroutine(Dash());
         }
@@ -159,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
        */
         
         
-        if (Input.GetButtonDown("Jump") && inFloor)  //coyoteCounter > 0f) /*
+        if (Input.GetButtonDown("Fire1") && inFloor)  //coyoteCounter > 0f) /*
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
             isDoubleJump = true;
@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        else if (Input.GetButtonUp("Jump"))
+        else if (Input.GetButtonUp("Fire1"))
         {
             rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
         }
@@ -301,7 +301,7 @@ public class PlayerMovement : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Jump") && wallJumpingCounter > 0f && !inFloor)
+        if (Input.GetButton("Fire1") && wallJumpingCounter > 0f && !inFloor)
         {
             isWallJumping = true;
             rigPlayer.linearVelocity = Vector2.zero;

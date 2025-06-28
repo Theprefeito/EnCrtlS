@@ -25,7 +25,7 @@ public class JupiterCloud : MonoBehaviour
 
     void MecanicaDeJupiter()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && ammunition > 0)
+        if (Input.GetButtonDown("Fire3") && ammunition > 0)
         {
             Instantiate(cloud, attackCheck.position, attackCheck.rotation);
             ammunition--;

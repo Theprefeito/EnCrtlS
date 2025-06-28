@@ -17,7 +17,7 @@ public class InvertedGravity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire3"))
         {
             invertedGravity = !invertedGravity;
 
