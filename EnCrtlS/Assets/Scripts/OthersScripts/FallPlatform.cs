@@ -73,6 +73,7 @@ public class FallPlatform : MonoBehaviour
              transform.position = initPos;
              rb.bodyType = RigidbodyType2D.Static;
              rb.linearVelocity = Vector2.zero;
+             
      }
     
 }
