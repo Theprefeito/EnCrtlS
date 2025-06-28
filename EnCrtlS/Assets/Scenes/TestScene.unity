@@ -1130,6 +1130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timetofall: 0.3
   Timetodestroy: 1.5
+  player: {fileID: 0}
+  Fall: 0
   rb: {fileID: 385498440}
 --- !u!251 &385498439
 PlatformEffector2D:
@@ -1542,8 +1544,8 @@ Transform:
   m_GameObject: {fileID: 429987649}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -12.692543, y: 2.021974, z: -0.009326613}
-  m_LocalScale: {x: 5.228173, y: 1, z: 1}
+  m_LocalPosition: {x: -12.6925, y: 3.1774, z: -0.009326613}
+  m_LocalScale: {x: 7.5386686, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 671133275}
@@ -1699,6 +1701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timetofall: 0.3
   Timetodestroy: 1.5
+  player: {fileID: 1809693182}
+  Fall: 0
   rb: {fileID: 448470309}
 --- !u!251 &448470308
 PlatformEffector2D:
@@ -3512,7 +3516,7 @@ MonoBehaviour:
   wallJumpingTime: 0.2
   wallJumpingCounter: 0
   wallJumpingDuration: 0.4
-  wallJumpingPower: {x: 1, y: 9}
+  wallJumpingPower: {x: 3, y: 9}
   flipado: 0
 --- !u!96 &1809693184
 TrailRenderer:
@@ -4132,6 +4136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timetofall: 0.3
   Timetodestroy: 1.5
+  player: {fileID: 0}
+  Fall: 0
   rb: {fileID: 2072313512}
 --- !u!251 &2072313511
 PlatformEffector2D:
