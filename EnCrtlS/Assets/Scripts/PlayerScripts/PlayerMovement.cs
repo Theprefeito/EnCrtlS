@@ -52,6 +52,10 @@ public class PlayerMovement : MonoBehaviour
     public bool flipado;
     private bool isWallJumping;
 
+    
+    [Header("Coyote")]   
+    [SerializeField] float coyoteTime = 0.2f;
+    [SerializeField] float coyoteCounter;
     void Start()
     {
         rigPlayer = GetComponent<Rigidbody2D>();
@@ -65,8 +69,19 @@ public class PlayerMovement : MonoBehaviour
         inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer); //aqui define quando o player est� no ch�o
         Debug.DrawLine(transform.position, groundCheck.position, Color.cyan); // aqui desenha uma linha no debug apenas
 
+        
+
+        if (inFloor)
+        {
+            coyoteCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteCounter -= Time.deltaTime;
+        }
+       
         Jump(); //esse � o void Jump
-              
+        
         if (isDashing)
         {
             return;
@@ -142,13 +157,14 @@ public class PlayerMovement : MonoBehaviour
             jumpNumber = 2;
         }
        */
-
         
-        if (Input.GetButtonDown("Jump") && inFloor)
+        
+        if (Input.GetButtonDown("Jump") && inFloor)  //coyoteCounter > 0f) /*
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
             isDoubleJump = true;
             jumpNumber--;
+            coyoteCounter = 0f;
         }
 
 
