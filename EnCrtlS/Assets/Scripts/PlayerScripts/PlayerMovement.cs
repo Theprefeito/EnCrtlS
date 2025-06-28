@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     
     
     [Header("Faster Fall")]
-    private float normalFallSpeed = 1f; 
+    private float normalFallSpeed = 2.5f; 
     private float fastFallSpeed = 4f;
     //Criar uma váriavel para controlar velocidade máxima de queda do player, para não bugar no chão por causa de velocidades extremas
 
