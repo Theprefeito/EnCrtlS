@@ -45,11 +45,12 @@ public class WallJump : MonoBehaviour
     void CheckWallNextTo()
     {
         onWall = Physics2D.OverlapCircle(wallCheck.position, 0.2f, groundLayer);
+        
     }
 
     private void CheckWallSlide()
     {
-        if (onWall && player.inFloor == false && rigPlayer.linearVelocity.y < 0 && Input.GetAxis("Horizontal") != 0f)
+        if (onWall && player.inFloor()  && rigPlayer.linearVelocity.y < 0 && Input.GetAxis("Horizontal") != 0f)
         {
             wallSlide = true;
         }

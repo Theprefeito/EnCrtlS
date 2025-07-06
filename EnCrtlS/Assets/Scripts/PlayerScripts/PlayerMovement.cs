@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] int jumpNumber;
-    public bool inFloor;
+    
     public bool isDoubleJump;
 
     [Header("Dash")]
@@ -66,12 +66,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer); //aqui define quando o player est� no ch�o
-        Debug.DrawLine(transform.position, groundCheck.position, Color.cyan); // aqui desenha uma linha no debug apenas
 
-        
-
-        if (inFloor)
+        if (inFloor())
         {
             coyoteCounter = coyoteTime;
         }
@@ -105,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         */
 
         FastFall();
+        inFloor();
     }
 
     private void FixedUpdate()
@@ -123,6 +120,12 @@ public class PlayerMovement : MonoBehaviour
     
     }
 
+
+    public bool inFloor()
+    {
+       return  Physics2D.OverlapCircle(groundCheck.position, 0.2f ,groundLayer);
+    }
+   
     void Move()
     {
         
@@ -159,12 +162,12 @@ public class PlayerMovement : MonoBehaviour
        */
         
         
-        if (Input.GetButtonDown("Fire1") && inFloor)  //coyoteCounter > 0f) /*
+        if (Input.GetButtonDown("Fire1") && coyoteCounter > 0f)  
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
             isDoubleJump = true;
             jumpNumber--;
-            coyoteCounter = 0f;
+            
         }
 
 
@@ -172,6 +175,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetButtonUp("Fire1"))
         {
             rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
+            coyoteCounter = 0f;
         }
         
     }
@@ -231,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckWallSlide()
     {
-        if (onWall && inFloor == false && rigPlayer.linearVelocity.y < 0 && Input.GetAxis("Horizontal") != 0f)
+        if (onWall && !inFloor() && rigPlayer.linearVelocity.y < 0 && Input.GetAxis("Horizontal") != 0f)
         {
             wallSlide = true;
         }
@@ -283,7 +287,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-        if (inFloor)
+        if (inFloor())
         {
             wallJumpingCounter = 0f;
         }
@@ -301,7 +305,7 @@ public class PlayerMovement : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && wallJumpingCounter > 0f && !inFloor)
+        if (Input.GetButton("Fire1") && wallJumpingCounter > 0f && !inFloor())
         {
             isWallJumping = true;
             rigPlayer.linearVelocity = Vector2.zero;
