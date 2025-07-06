@@ -46,6 +46,12 @@ TagManager:
   - name: Background
     uniqueID: 4136685233
     locked: 0
+  - name: Meio
+    uniqueID: 3911909475
+    locked: 0
+  - name: Frente
+    uniqueID: 129458835
+    locked: 0
   - name: Na frente
     uniqueID: 2316075163
     locked: 0
