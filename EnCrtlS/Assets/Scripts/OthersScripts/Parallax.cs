@@ -1,43 +1,66 @@
 using UnityEngine;
+[System.Serializable]
 
-public class Parallax : MonoBehaviour
-{
-    private float StartPos, lenght;
-    public GameObject cam;
-    public float parallaxEffect;
+
+
+public class ParallaxBackground : MonoBehaviour
+
+{  
     
+    [SerializeField] Transform cam;
+    [SerializeField] private float efectParallax = 0.2f;
     
+    private float spriteWidth;
+    private Vector3 lastCamPos;
     
-    
-    
-    
-    
-    
-    
+    private Transform [] Backgrounds = new Transform [2]; // = Quantidade de fundos completos 
+
+
     void Start()
     {
-        StartPos = transform.position.x;
-        lenght = GetComponent<SpriteRenderer>().bounds.size.x;
-    }
+        if (transform.childCount != 2)
+        {
+            Debug.LogError($"ParallaxBackground works with 2 background children, Fix '{name}' GameObject");
+            return;
+        }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        float distance = cam.transform.position.x * parallaxEffect;
+        for (int i = 0; i < 2; i++)
+        {
+            Backgrounds[i] = transform.GetChild(i);
+        }
 
-
-        float movement = cam.transform.position.x * (1 - parallaxEffect);
+        if (cam == null) cam = Camera.main.transform;
+        lastCamPos = cam.position;
         
-        transform.position = new Vector3(StartPos + distance, transform.position.y, transform.position.z);
-
-
-        if (movement > StartPos + lenght )
-        {
-            StartPos += lenght;
-        }
-        else if (movement < StartPos - lenght)
-        {
-            StartPos -= lenght;
-        }
+        
+        spriteWidth = Backgrounds[0].GetComponent<SpriteRenderer>().bounds.size.x;
     }
+
+    void LateUpdate()
+    {
+        
+        Vector3 FollowMovent = cam.position - lastCamPos;
+        
+        transform.position += new Vector3 (FollowMovent.x * efectParallax, 0, 0);
+        
+        lastCamPos = cam.position;
+
+        foreach (var background in Backgrounds)
+        {
+            float camDistance = cam.position.x - background.position.x;
+            if (Mathf.Abs(camDistance) >= spriteWidth)
+            {
+                float offset = (camDistance > 0) ? spriteWidth * 2f: -spriteWidth * 2f;
+                background.position += new Vector3(offset, 0, 0);
+            }
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
 }
