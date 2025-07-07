@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     
-    
     public Transform pauseMenu;
+    public GameObject Optionsmenu;
+    
+    
     void Start()
     {
         
@@ -28,7 +31,6 @@ public class PauseMenu : MonoBehaviour
                 }
             }
             
-            
         }
     }
 
@@ -37,7 +39,23 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
-    
-    
-    
+
+    public void ExitToMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Options()
+    {
+        Optionsmenu.SetActive(true);
+        pauseMenu.gameObject.SetActive(false);
+        
+    }
+
+    public void ExitOptions()
+    {
+       Optionsmenu.SetActive(false);
+        pauseMenu.gameObject.SetActive(true);
+    }
 }
