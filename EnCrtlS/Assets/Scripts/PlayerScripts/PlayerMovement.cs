@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigPlayer;
     private SpriteRenderer srPlayer;
     private Animator animPlayer;
-    
+    private bool canMove = true;
+
     [Header("Jump")]
     [SerializeField] float jumpStrange;
     [SerializeField] Transform groundCheck;
@@ -37,22 +38,16 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Wall Slide")]
     [SerializeField] Transform wallCheck;
-    [SerializeField] float wallCheckDistance;
-    [SerializeField] float wallSlideSpeed;
-    public bool isFacingRight;
-    public bool onWall;
-    public bool wallSlide;
+    public bool isWallTouch;
+    public bool isSliding;
+    [SerializeField] float wallSlidingSpeed;
+    private bool isFacingRight;
 
-    [Header("Wall Jump")]    
-    [SerializeField] float wallJumpingDirection;
-    [SerializeField] float wallJumpingTime = 0.2f;
-    [SerializeField] float wallJumpingCounter;
-    [SerializeField] float wallJumpingDuration = 0.4f;
-    [SerializeField] Vector2 wallJumpingPower;
-    public bool flipado;
+   // Wall Jump Variveis
     private bool isWallJumping;
+    private float wallJumpDir;
 
-    
+
     [Header("Coyote")]   
     [SerializeField] float coyoteTime = 0.2f;
     [SerializeField] float coyoteCounter;
@@ -66,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isWallTouch = Physics2D.OverlapBox(wallCheck.position, new Vector2(0.1f, 0.3f), 0, groundLayer);
 
         if (inFloor())
         {
@@ -87,31 +83,20 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
-
-        if (!isWallJumping)
-        {
-            Flip();
-        }
-
-        /*
-        if (!isWallJumping)
-        {
-           
-        }
-        */
-
+        
+        WallSlide();
         FastFall();
         inFloor();
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if (canMove)
+        {
+            Move();
+        }
         FastFall();
-        CheckWallNextTo();
-        CheckWallSlide();
-        WallJump();
-        
+        FlipWallCheck();
 
         if (isDashing)
         {
@@ -139,34 +124,25 @@ public class PlayerMovement : MonoBehaviour
         {
            
            srPlayer.flipX = false; //Flipa o player para a direita
-            flipado = false;
-            wallJumpingDirection = -1f;
+            
         }
        
         if (Input.GetAxis("Horizontal") < 0f)
         {
            
            srPlayer.flipX = true; //Flipa o player para a esquerda
-            flipado = true;
-            wallJumpingDirection = 1f;
+            
         }
     }
 
     void Jump()
     {
-        /*
-        if (inFloor)
-        {
-            jumpNumber = 2;
-        }
-       */
         
         
-        if (Input.GetButtonDown("Fire1") && coyoteCounter > 0f)  
+        
+        if (Input.GetButtonDown("Fire1") && (coyoteCounter > 0f || isSliding))  
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
-            isDoubleJump = true;
-            jumpNumber--;
             
         }
 
@@ -197,10 +173,28 @@ public class PlayerMovement : MonoBehaviour
     }
     
     
+    void WallSlide()
+    {
+        if(isWallTouch && Input.GetAxis("Horizontal") != 0f)
+        {
+            isSliding = true;
+        }
+
+        else
+        {
+            isSliding = false;  
+        }
+
+        if (isSliding)
+        {
+            rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x,Mathf.Clamp(rigPlayer.linearVelocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
     
-    
-    
-     private IEnumerator Dash()
+
+    }
+
+
+    private IEnumerator Dash()
      {
         
         canDash = false;
@@ -228,114 +222,6 @@ public class PlayerMovement : MonoBehaviour
      }
 
 
-    void CheckWallNextTo()
-    {
-        onWall = Physics2D.OverlapCircle(wallCheck.position, 0.2f, groundLayer);
-    }
-
-    private void CheckWallSlide()
-    {
-        if (onWall && !inFloor() && rigPlayer.linearVelocity.y < 0 && Input.GetAxis("Horizontal") != 0f)
-        {
-            wallSlide = true;
-        }
-
-        else
-        {
-            wallSlide = false;
-        }
-
-        if (wallSlide)
-        {
-            if (rigPlayer.linearVelocity.y < -wallSlideSpeed)
-            {
-                rigPlayer.linearVelocityY = -wallSlideSpeed * Time.deltaTime;
-            }
-
-        }
-    }
-
-    void Flip()
-    {
-        if (Input.GetAxis("Horizontal") > 0f)
-        {
-            if (isFacingRight)
-            {
-                Vector3 attackPos = wallCheck.localPosition;
-                attackPos.x *= -1;
-                wallCheck.localPosition = attackPos;
-
-
-                isFacingRight = false;
-            }
-        }
-
-        if (Input.GetAxis("Horizontal") < 0f)
-        {
-            if (!isFacingRight)
-            {
-                Vector3 attackPos = wallCheck.localPosition;
-                attackPos.x *= -1;
-                wallCheck.localPosition = attackPos;
-
-
-                isFacingRight = true;
-            }
-        }
-
-    }
-
-    private void WallJump()
-    {
-        if (inFloor())
-        {
-            wallJumpingCounter = 0f;
-        }
-        
-        if (wallSlide)
-        {
-            isWallJumping = false;
-            wallJumpingDirection = -transform.localScale.x;
-            wallJumpingCounter = wallJumpingTime;
-
-            CancelInvoke(nameof(StopWallJumping));
-        }
-        else
-        {
-            wallJumpingCounter -= Time.deltaTime;
-        }
-
-        if (Input.GetButton("Fire1") && wallJumpingCounter > 0f && !inFloor())
-        {
-            isWallJumping = true;
-            rigPlayer.linearVelocity = Vector2.zero;
-            rigPlayer.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
-            wallJumpingCounter = 0f;
-
-            if (transform.localScale.x != wallJumpingDirection)
-            {
-                flipado = !flipado;
-                if (flipado)
-                {
-                    srPlayer.flipX = true;
-                }
-            
-                else if (!flipado)
-                {
-                    srPlayer.flipX = false;
-                }
-            }
-
-            Invoke(nameof(StopWallJumping), wallJumpingDuration);
-        }
-    }
-
-    private void StopWallJumping()
-    {
-        isWallJumping = false;
-    }
-
-
     //Essas duas fun��es s�o para manter o Player na Plataforma
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -351,6 +237,36 @@ public class PlayerMovement : MonoBehaviour
         {
             this.transform.parent = null;
         }
+    }
+
+    void FlipWallCheck()
+    {
+        if (Input.GetAxis("Horizontal") > 0f)
+        {
+            if (isFacingRight)
+            {
+                Vector3 attackPos = wallCheck.localPosition;
+                attackPos.x *= -1;
+                wallCheck.localPosition = attackPos;
+
+                wallJumpDir = -1;
+                isFacingRight = false;
+            }
+        }
+
+        if (Input.GetAxis("Horizontal") < 0f)
+        {
+            if (!isFacingRight)
+            {
+                Vector3 attackPos = wallCheck.localPosition;
+                attackPos.x *= -1;
+                wallCheck.localPosition = attackPos;
+
+                wallJumpDir = 1;
+                isFacingRight = true;
+            }
+        }
+
     }
 
 }

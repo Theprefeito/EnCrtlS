@@ -134,7 +134,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d47ce21ff7a9a314e81bf8968f619568, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -193,18 +193,6 @@ MonoBehaviour:
   tr: {fileID: 4790808556497641786}
   dashPower: 7
   dashTime: 0.2
-  wallCheck: {fileID: 5973054296909532283}
-  wallCheckDistance: 0.8
-  wallSlideSpeed: 3
-  isFacingRight: 0
-  onWall: 0
-  wallSlide: 0
-  wallJumpingDirection: 0
-  wallJumpingTime: 0.2
-  wallJumpingCounter: 0
-  wallJumpingDuration: 0.4
-  wallJumpingPower: {x: 3, y: 9}
-  flipado: 0
   coyoteTime: 0.2
   coyoteCounter: 0
 --- !u!114 &4418620146158340009
