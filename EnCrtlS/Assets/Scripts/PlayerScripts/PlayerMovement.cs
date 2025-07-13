@@ -66,10 +66,20 @@ public class PlayerMovement : MonoBehaviour
         if (inFloor())
         {
             coyoteCounter = coyoteTime;
+           
+            if (!isDashing)
+            {
+                AnimationWalkPlayer();
+            }
         }
         else
         {
             coyoteCounter -= Time.deltaTime;
+            
+            if (!isDashing)
+            {
+                AnimationJumpPlayer();
+            }
         }
        
         Jump(); //esse � o void Jump
@@ -97,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
         }
         FastFall();
         FlipWallCheck();
+        AnimationPlayer();
 
         if (isDashing)
         {
@@ -116,9 +127,6 @@ public class PlayerMovement : MonoBehaviour
         
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * speedPlayer;
-
-        float speedForAnimations = Input.GetAxis("Horizontal"); //é usado apenas usado neste caso
-        animPlayer.SetFloat("Speed", math.abs(speedForAnimations));
 
         if (Input.GetAxis("Horizontal") > 0f)
         {
@@ -267,6 +275,41 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }
+
+    void AnimationPlayer()
+    {
+        if (isDashing)
+        {
+            animPlayer.SetBool("Dash", true);
+        }
+        else
+        {
+            animPlayer.SetBool("Dash", false);
+        }
+    }
+
+    void AnimationJumpPlayer()
+    {
+        float velocityY = rigPlayer.linearVelocity.y;
+        if( velocityY > 0) //Pulando
+        {
+            animPlayer.SetBool("IsFall", false);
+            animPlayer.SetBool("isJump", true);
+        }
+        else if(velocityY < 0) //Caindo
+        {
+            animPlayer.SetBool("IsFall", true);
+            animPlayer.SetBool("isJump", false);
+        }
+    }
+
+    void AnimationWalkPlayer()
+    {
+        float speedForAnimations = Input.GetAxis("Horizontal"); //é usado apenas usado neste caso
+        animPlayer.SetFloat("Speed", math.abs(speedForAnimations));
+        animPlayer.SetBool("IsFall", false);
+        animPlayer.SetBool("isJump", false);
     }
 
 }
