@@ -43,9 +43,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float wallSlidingSpeed;
     private bool isFacingRight;
 
-   // Wall Jump Variveis
-    private bool isWallJumping;
-    private float wallJumpDir;
+
 
 
     [Header("Coyote")]   
@@ -257,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
                 attackPos.x *= -1;
                 wallCheck.localPosition = attackPos;
 
-                wallJumpDir = -1;
+             
                 isFacingRight = false;
             }
         }
@@ -270,7 +268,7 @@ public class PlayerMovement : MonoBehaviour
                 attackPos.x *= -1;
                 wallCheck.localPosition = attackPos;
 
-                wallJumpDir = 1;
+               
                 isFacingRight = true;
             }
         }
