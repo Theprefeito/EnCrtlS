@@ -32,9 +32,9 @@ public class PlayerMovement : MonoBehaviour
     
     
     [Header("Faster Fall")]
-    private float normalFallSpeed = 5f; 
-    private float fastFallSpeed = 4f;
-    //Criar uma váriavel para controlar velocidade máxima de queda do player, para não bugar no chão por causa de velocidades extremas
+    public float normalFallSpeed = 2f; 
+    public float fastFallSpeed = 1.5f;
+   // public float maxfallspeed = -3f; // Se tiver bugando uso isso depois
 
     [Header("Wall Slide")]
     [SerializeField] Transform wallCheck;
@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         rigPlayer = GetComponent<Rigidbody2D>();
         srPlayer = GetComponent<SpriteRenderer>();
         animPlayer = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -166,14 +167,18 @@ public class PlayerMovement : MonoBehaviour
     void FastFall()
     {
       
+        if (rigPlayer.linearVelocity.y < 0)
+        {
+            rigPlayer.linearVelocity += Vector2.up * Physics2D.gravity.y * (normalFallSpeed - 1f)  * Time.deltaTime;
+        }
        
-       //Agora funciona normal
+        //Agora funciona normal
         
         if (rigPlayer.linearVelocity.y < 0 && Input.GetAxis("Vertical") < 0f)
         {
-          rigPlayer.linearVelocity += Vector2.up * Physics2D.gravity.y * (fastFallSpeed - 1) * Time.deltaTime;
+          rigPlayer.linearVelocity += Vector2.up * Physics2D.gravity.y * (fastFallSpeed - 0.5f)  * Time.deltaTime;
         }
-        
+
        
         
     }
