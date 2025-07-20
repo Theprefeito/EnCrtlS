@@ -1,16 +1,20 @@
+using System.IO;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     
     public Transform pauseMenu;
     public GameObject Optionsmenu;
-    public AudioSource audio;
-    
+    public new AudioSource audio;
+    public TMP_Dropdown dropdown; //usar depois
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
@@ -48,6 +52,7 @@ public class PauseMenu : MonoBehaviour
            
         }
         
+        
     }
 
     
@@ -71,10 +76,15 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.gameObject.SetActive(false);
         
     }
-
+    
+    
     public void ExitOptions()
     {
        Optionsmenu.SetActive(false);
         pauseMenu.gameObject.SetActive(true);
     }
+    
+    
+    
+    
 }

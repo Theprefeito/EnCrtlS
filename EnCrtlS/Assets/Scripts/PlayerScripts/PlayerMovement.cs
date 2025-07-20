@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -49,6 +50,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Coyote")]   
     [SerializeField] float coyoteTime = 0.2f;
     [SerializeField] float coyoteCounter;
+   
+    
+    DialoguesFunction dialogueFunction;
+
+    [SerializeField] Transform NpcTransform;
+
+    private void Awake()
+    {
+        dialogueFunction = FindFirstObjectByType<DialoguesFunction>();
+    }
+
     void Start()
     {
         rigPlayer = GetComponent<Rigidbody2D>();
@@ -96,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         WallSlide();
         FastFall();
         inFloor();
+        PlayerDialogue();
     }
 
     private void FixedUpdate()
@@ -315,4 +328,16 @@ public class PlayerMovement : MonoBehaviour
         animPlayer.SetBool("isJump", false);
     }
 
+
+    void PlayerDialogue()
+    {
+        if (Mathf.Abs(transform.position.x - NpcTransform.position.x) < 2f )
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                dialogueFunction.Next();
+            }
+        }
+    }
+   
 }
