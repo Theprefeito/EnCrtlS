@@ -422,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0.035
   textDialogo: {fileID: 1767493516}
-  fullText: "Oh Batima, Why so sirous? Por que voc\xEA t\xE1 de calcinha batima?"
+  fullText: "Batima why so sirious? Por que voc\xEA est\xE1 de calcinha batima?"
 --- !u!114 &98686001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9286,11 +9286,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 190877663285034809, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.9822154
+      value: -6.971
       objectReference: {fileID: 0}
     - target: {fileID: 190877663285034809, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.38
+      value: -3.49
       objectReference: {fileID: 0}
     - target: {fileID: 190877663285034809, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10223,6 +10223,10 @@ PrefabInstance:
     - target: {fileID: 5438626411919616891, guid: b22b299c940c1284a873a24abc96ef6f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 84.585
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856204572524389976, guid: b22b299c940c1284a873a24abc96ef6f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5873580086356260803, guid: b22b299c940c1284a873a24abc96ef6f, type: 3}
       propertyPath: m_Sprite
