@@ -384,15 +384,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 98685999}
-  - component: {fileID: 98686000}
-  - component: {fileID: 98686001}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &98685999
 Transform:
   m_ObjectHideFlags: 0
@@ -408,35 +406,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &98686000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98685998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8096bf932719bc84caeb5836d01cea0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0.035
-  textDialogo: {fileID: 1767493516}
-  fullText: "Batima why so sirious? Por que voc\xEA est\xE1 de calcinha batima?"
---- !u!114 &98686001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98685998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2125f27ca2564a41babfa7fd3bccaf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 186295129}
-  dialoguesData: {fileID: 11400000, guid: 6f24ef8ad946e6e4fa53b057ccf8ee2d, type: 2}
 --- !u!1 &161705247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1033,8 @@ GameObject:
   m_Component:
   - component: {fileID: 316453563}
   - component: {fileID: 316453562}
+  - component: {fileID: 316453564}
+  - component: {fileID: 316453565}
   m_Layer: 0
   m_Name: NPC test
   m_TagString: Untagged
@@ -1141,6 +1112,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &316453564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316453561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc6b7dc74a6756489efb75f9488243e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguesNPC:
+  - Toma pipocada
+  - "T\xE1 de calcinha? Cuidado machuca as bolas"
+  dialogueIndex: 0
+  panel: {fileID: 945981124}
+  dialogueText: {fileID: 1767493516}
+  nameInBox: {fileID: 1834955713}
+  icon: {fileID: 1723658531}
+  spriteNpc: {fileID: 8862816369831031920, guid: 03f208e26c89fc44eadcefea7663223a, type: 3}
+  startDialogue: 0
+  speakStart: 0
+--- !u!61 &316453565
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316453561}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.36, y: 4.96}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 7.36, y: 4.96}
+  m_EdgeRadius: 0
 --- !u!1001 &385137537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10962,7 +11002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: abacate
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

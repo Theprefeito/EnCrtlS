@@ -8,7 +8,7 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float speedPlayer;
+    [SerializeField] public float speedPlayer;
     private Rigidbody2D rigPlayer;
     private SpriteRenderer srPlayer;
     private Animator animPlayer;
@@ -52,15 +52,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float coyoteCounter;
    
     
-    DialoguesFunction dialogueFunction;
+  
 
     [SerializeField] Transform NpcTransform;
 
-    private void Awake()
-    {
-        dialogueFunction = FindFirstObjectByType<DialoguesFunction>();
-    }
-
+    
     void Start()
     {
         rigPlayer = GetComponent<Rigidbody2D>();
@@ -108,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         WallSlide();
         FastFall();
         inFloor();
-        PlayerDialogue();
+      
     }
 
     private void FixedUpdate()
@@ -329,7 +325,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void PlayerDialogue()
+   /* void PlayerDialogue()
     {
         if (Mathf.Abs(transform.position.x - NpcTransform.position.x) < 2f )
         {
@@ -339,5 +335,5 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-   
+   */
 }
