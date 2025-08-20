@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2c2d7b024fedd40831a2cacd97e7c8, type: 3}
   m_Name: DialoguesDataV2
   m_EditorClassIdentifier: 
-  dialogueText: 
+  dialogueText: []
   npcName: 
   npcIcon: {fileID: 0}
