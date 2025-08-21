@@ -4,7 +4,8 @@ using UnityEngine.UI;
 using System.Collections;
 public class DialogueV2 : MonoBehaviour
 {
-    public string[] dialoguesNPC;
+    public DialogueDataV2 dialogueData;
+
     public int dialogueIndex;
 
     public GameObject panel;
@@ -12,7 +13,7 @@ public class DialogueV2 : MonoBehaviour
 
     public TMP_Text nameInBox;
     public Image icon;
-    public Sprite spriteNpc;
+   
 
 
     public bool startDialogue;
@@ -26,7 +27,7 @@ public class DialogueV2 : MonoBehaviour
     void Start()
     {
         panel.gameObject.SetActive(false);
-        typingCoroutine = StartCoroutine(DialogueShow());
+        typingCoroutine = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -71,7 +72,7 @@ public class DialogueV2 : MonoBehaviour
         dialogueIndex++;
 
 
-        if(dialogueIndex < dialoguesNPC.Length)
+        if(dialogueIndex < dialogueData.lines.Length)
         {
             StartCoroutine(DialogueShow());
         }
@@ -93,8 +94,15 @@ public class DialogueV2 : MonoBehaviour
 
 
         isTyping = true;
+
+        MultipleDialogue line = dialogueData.lines[dialogueIndex];
+
         dialogueText.text = "";
-        foreach (char letter in dialoguesNPC[dialogueIndex])
+        nameInBox.text = line.npcName;
+        icon.sprite = line.npcIcon;
+
+
+        foreach (char letter in line.textDialogue)
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.05f);
@@ -106,8 +114,7 @@ public class DialogueV2 : MonoBehaviour
 
     private void StartDialogue()
     {
-        nameInBox.text = "JOUKi";
-        icon.sprite = spriteNpc;
+       
         startDialogue = true;
         dialogueIndex = 0;
         panel.gameObject.SetActive(true);

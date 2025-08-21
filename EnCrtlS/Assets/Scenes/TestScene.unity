@@ -465,7 +465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &98685999
 Transform:
   m_ObjectHideFlags: 0
@@ -1108,8 +1108,8 @@ GameObject:
   m_Component:
   - component: {fileID: 316453563}
   - component: {fileID: 316453562}
-  - component: {fileID: 316453564}
   - component: {fileID: 316453565}
+  - component: {fileID: 316453566}
   m_Layer: 0
   m_Name: NPC test
   m_TagString: Untagged
@@ -1187,31 +1187,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &316453564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316453561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdc6b7dc74a6756489efb75f9488243e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialoguesNPC:
-  - Um panda vermelho circulando por aqui?
-  - "T\xE1 de calcinha? Cuidado machuca as bolas. Por isso eu s\xF3 uso nas quintas
-    feiras a noite"
-  - Hihihihihihihihihihihihihihihihihihihihihihihihi
-  dialogueIndex: 0
-  panel: {fileID: 708039113}
-  dialogueText: {fileID: 1795322392}
-  nameInBox: {fileID: 971394502}
-  icon: {fileID: 84481834}
-  spriteNpc: {fileID: -3315247072422729063, guid: 438786b00517f1d48afea18b615f22a0, type: 3}
-  startDialogue: 0
-  speakStart: 0
 --- !u!61 &316453565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1258,6 +1233,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 7.36, y: 4.96}
   m_EdgeRadius: 0
+--- !u!114 &316453566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316453561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc6b7dc74a6756489efb75f9488243e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData: {fileID: 11400000, guid: 070aad618bd45334abf19d0bcbf7849f, type: 2}
+  dialogueIndex: 0
+  panel: {fileID: 708039113}
+  dialogueText: {fileID: 1795322392}
+  nameInBox: {fileID: 971394502}
+  icon: {fileID: 84481834}
+  startDialogue: 0
+  speakStart: 0
 --- !u!1001 &385137537
 PrefabInstance:
   m_ObjectHideFlags: 0

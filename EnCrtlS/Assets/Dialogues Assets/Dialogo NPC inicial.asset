@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2c2d7b024fedd40831a2cacd97e7c8, type: 3}
+  m_Name: Dialogo NPC inicial
+  m_EditorClassIdentifier: 
+  lines:
+  - textDialogue: Ola, seja bem vindo a Planeta Marte meu caro amigo, pequeno e baixo,
+      super pequeno, vermelho e pequeno panda
+    npcName: O rei
+    npcIcon: {fileID: 1746982975475920463, guid: 5ab0986d9407f714286eca1c5cd9bd29, type: 3}
+  - textDialogue: Ola, obrigado
+    npcName: O joukir
+    npcIcon: {fileID: -3315247072422729063, guid: 438786b00517f1d48afea18b615f22a0, type: 3}
+  - textDialogue: De nada, agora morra!
+    npcName: O rei
+    npcIcon: {fileID: 1746982975475920463, guid: 5ab0986d9407f714286eca1c5cd9bd29, type: 3}
+  - textDialogue: ..........
+    npcName: O jourkir
+    npcIcon: {fileID: 8862816369831031920, guid: 03f208e26c89fc44eadcefea7663223a, type: 3}
