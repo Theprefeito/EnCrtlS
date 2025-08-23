@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 
 
-[System.Serializable]
+[Serializable]
 public class MultipleDialogue
 {
     [TextArea(3, 10)]
@@ -22,6 +23,6 @@ public class MultipleDialogue
 public class DialogueDataV2 : ScriptableObject
 {
 
-  public MultipleDialogue[] lines;
+  public MultipleDialogue[] lists;
 
 }

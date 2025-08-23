@@ -20,14 +20,12 @@ public class DialogueV2 : MonoBehaviour
     public bool speakStart;
 
 
-
-    private Coroutine typingCoroutine;
     bool isTyping;
 
     void Start()
     {
         panel.gameObject.SetActive(false);
-        typingCoroutine = null;
+      
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,14 +53,9 @@ public class DialogueV2 : MonoBehaviour
                 FindAnyObjectByType<PlayerMovement>().speedPlayer = 0;
                 StartDialogue();
             }
-            else
+            else if (!isTyping)
             {
-                if(!isTyping)
-                {
-                    Next();
-                }
-
-                
+               Next();
             }
         }
     }
@@ -72,7 +65,7 @@ public class DialogueV2 : MonoBehaviour
         dialogueIndex++;
 
 
-        if(dialogueIndex < dialogueData.lines.Length)
+        if(dialogueIndex < dialogueData.lists.Length)
         {
             StartCoroutine(DialogueShow());
         }
@@ -95,18 +88,19 @@ public class DialogueV2 : MonoBehaviour
 
         isTyping = true;
 
-        MultipleDialogue line = dialogueData.lines[dialogueIndex];
+        MultipleDialogue lists = dialogueData.lists[dialogueIndex];
 
         dialogueText.text = "";
-        nameInBox.text = line.npcName;
-        icon.sprite = line.npcIcon;
+        nameInBox.text = lists.npcName;
+        icon.sprite = lists.npcIcon;
 
 
-        foreach (char letter in line.textDialogue)
+        foreach (char letter in lists.textDialogue)
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.05f);
         }
+       
         isTyping = false;
     }
 
