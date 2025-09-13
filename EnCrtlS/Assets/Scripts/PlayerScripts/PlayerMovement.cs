@@ -163,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        else if (Input.GetButtonUp("Fire1")) //Funcao do pulo variavel
+        else if (Input.GetButtonUp("Fire1") && rigPlayer.linearVelocityY > 0f) //Funcao do pulo variavel
         {
             rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
             coyoteCounter = 0f;

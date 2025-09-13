@@ -50,7 +50,7 @@ public class DialogueV2 : MonoBehaviour
         {
             if (!startDialogue)
             {
-                FindAnyObjectByType<PlayerMovement>().speedPlayer = 0;
+                FindAnyObjectByType<PlayerMovement>().enabled = false;
                 StartDialogue();
             }
             else if (!isTyping)
@@ -74,7 +74,7 @@ public class DialogueV2 : MonoBehaviour
             panel.gameObject.SetActive(false);
             startDialogue = false;
             dialogueIndex = 0;
-            FindAnyObjectByType<PlayerMovement>().speedPlayer = 5f;
+            FindAnyObjectByType<PlayerMovement>().enabled = true ;
         }
 
     }
