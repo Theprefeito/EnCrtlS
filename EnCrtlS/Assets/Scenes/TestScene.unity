@@ -9574,6 +9574,18 @@ PrefabInstance:
       propertyPath: wallSlidingSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: wallJumpingPower.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: wallJumpingPower.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: wallJumpingDuration
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8769250438414465055, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
     m_RemovedGameObjects: []
