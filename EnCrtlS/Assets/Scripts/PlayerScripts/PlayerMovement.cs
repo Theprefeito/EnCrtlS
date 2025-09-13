@@ -29,9 +29,16 @@ public class PlayerMovement : MonoBehaviour
     public float dashPower = 12f;
     public float dashTime = 0.2f;
     private float dashCooldowm = 1f;
-   
+
+    [Header("Wall Jump")]
+    [SerializeField] float wallJumpingDirection;
+    [SerializeField] float wallJumpingTime = 0.2f;
+    [SerializeField] float wallJumpingDuration = 0.4f;
+    [SerializeField] Vector2 wallJumpingPower = new Vector2(8f, 16f);
+    private float wallJumpingCounter;
+    private bool isWallJumping;
     
-    
+
     [Header("Faster Fall")]
   
     public float maxfallspeed = -30f; // Se tiver bugando uso isso depois
@@ -44,15 +51,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight;
 
 
-
-
     [Header("Coyote")]   
     [SerializeField] float coyoteTime = 0.2f;
     [SerializeField] float coyoteCounter;
    
     
-  
-
     [SerializeField] Transform NpcTransform;
 
     
@@ -60,14 +63,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rigPlayer = GetComponent<Rigidbody2D>();
         srPlayer = GetComponent<SpriteRenderer>();
-        animPlayer = GetComponent<Animator>();
-        
+        animPlayer = GetComponent<Animator>();        
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        isWallTouch = Physics2D.OverlapBox(wallCheck.position, new Vector2(0.1f, 0.3f), 0, groundLayer);
+        isWallTouch = Physics2D.OverlapBox(wallCheck.position, new Vector2(0.1f, 0.3f), 0, groundLayer); //Detecta a colisão do wallCheck na parede
 
         if (inFloor())
         {
@@ -103,8 +106,9 @@ public class PlayerMovement : MonoBehaviour
         WallSlide();
         CairMaisRApido();
         inFloor();
-      
+        WallJump();
     }
+
 
     private void FixedUpdate()
     {
@@ -123,7 +127,6 @@ public class PlayerMovement : MonoBehaviour
     
     }
 
-
     public bool inFloor()
     {
        return  Physics2D.OverlapCircle(groundCheck.position, 0.2f ,groundLayer); //Serve pra definir se está no chão ou não
@@ -139,29 +142,25 @@ public class PlayerMovement : MonoBehaviour
         {
            
            srPlayer.flipX = false; //Flipa o player para a direita
-            
+           wallJumpingDirection = -1f;
         }
        
         if (Input.GetAxis("Horizontal") < 0f)
         {
            
            srPlayer.flipX = true; //Flipa o player para a esquerda
-            
+           wallJumpingDirection = 1f;
         }
     }
 
+
     void Jump()
     {
-
-
-
-        if (Input.GetButtonDown("Fire1") && (coyoteCounter > 0f || isSliding)) //Esse metodo define que é possivel pular
+        if (Input.GetButtonDown("Fire1") && coyoteCounter > 0f) //Esse metodo define que é possivel pular
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
 
         }
-
-
 
         else if (Input.GetButtonUp("Fire1") && rigPlayer.linearVelocityY > 0f) //Funcao do pulo variavel
         {
@@ -176,17 +175,16 @@ public class PlayerMovement : MonoBehaviour
     {
       
       if(rigPlayer.linearVelocityY < maxfallspeed)
-        {
+      {
             rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocityX, maxfallspeed); //Isso faz com que ele atinga a velocidade setada na variavel de MaxfallSpeed
-        }
-       
-        
+      }
+               
     }
     
     
     void WallSlide()
     {
-        if(isWallTouch && Input.GetAxis("Horizontal") != 0f) 
+        if(isWallTouch && Input.GetAxis("Horizontal") != 0f)  //Serve para ele só dar slide se tiver presionando o botão da direção da parede
         {
             isSliding = true;
         }
@@ -198,10 +196,44 @@ public class PlayerMovement : MonoBehaviour
 
         if (isSliding)
         {
-            rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x,Mathf.Clamp(rigPlayer.linearVelocity.y, -wallSlidingSpeed, float.MaxValue));
+            rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x,Mathf.Clamp(rigPlayer.linearVelocity.y, -wallSlidingSpeed, float.MaxValue)); //Diminiu a velocidade de queda quando esta no slide
         }
     
 
+    }
+
+    private void WallJump()
+    {
+        if (isSliding)
+        {
+            isWallJumping = false;            
+            wallJumpingCounter = wallJumpingTime; //seta o valor do timer = ao valor da duração do Wall jump
+
+            CancelInvoke(nameof(StopWallJumping));
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime; //inicia do timer do wall jump
+        }
+
+        if (Input.GetButtonDown("Fire1") && wallJumpingCounter > 0f) //quando precionar o botao de pulo inicia o wall jump
+        {
+            isWallJumping = true;
+            rigPlayer.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y); //adiciona a força diagonal do wall jump
+            wallJumpingCounter = 0f; //Reseta o timer
+
+            StartCoroutine(StopWallJumping()); //cancela o wall jump
+        }
+
+                            
+    }
+
+
+    private IEnumerator StopWallJumping()
+    {
+        yield return new WaitForSeconds(wallJumpingDuration);
+        rigPlayer.linearVelocity = Vector2.zero;
+        isWallJumping = false; //cancela o wall jump
     }
 
 
