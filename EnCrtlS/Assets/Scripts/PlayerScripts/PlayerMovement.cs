@@ -280,6 +280,13 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Room"))
+        {
+            Camera.main.GetComponent<CameraFollowV2>().SetCurrentRoom(other.transform); // serve para chamar a função do script CameraFollowV2
+        }
+    }
     void AnimationPlayer()
     {
         if (isDashing)
