@@ -98,7 +98,7 @@ public class DialogueV2 : MonoBehaviour
         foreach (char letter in lists.textDialogue)
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.05f); //Tempo que a letra aparece 
         }
        
         isTyping = false;

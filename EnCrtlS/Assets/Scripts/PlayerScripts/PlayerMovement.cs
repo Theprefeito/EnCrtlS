@@ -33,9 +33,8 @@ public class PlayerMovement : MonoBehaviour
     
     
     [Header("Faster Fall")]
-    public float normalFallSpeed = 2f; 
-    public float fastFallSpeed = 1.5f;
-   // public float maxfallspeed = -3f; // Se tiver bugando uso isso depois
+  
+    public float maxfallspeed = -30f; // Se tiver bugando uso isso depois
 
     [Header("Wall Slide")]
     [SerializeField] Transform wallCheck;
@@ -102,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         WallSlide();
-        FastFall();
+        CairMaisRApido();
         inFloor();
       
     }
@@ -113,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Move();
         }
-        FastFall();
+        CairMaisRApido();
         FlipWallCheck();
         AnimationPlayer();
 
@@ -127,14 +126,14 @@ public class PlayerMovement : MonoBehaviour
 
     public bool inFloor()
     {
-       return  Physics2D.OverlapCircle(groundCheck.position, 0.2f ,groundLayer);
+       return  Physics2D.OverlapCircle(groundCheck.position, 0.2f ,groundLayer); //Serve pra definir se está no chão ou não
     }
    
     void Move()
     {
         
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += movement * Time.deltaTime * speedPlayer;
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f); //Variavel que define a direção que vc está indo
+        transform.position += movement * Time.deltaTime * speedPlayer; //Serve para mover o Player
 
         if (Input.GetAxis("Horizontal") > 0f)
         {
@@ -153,18 +152,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        
-        
-        
-        if (Input.GetButtonDown("Fire1") && (coyoteCounter > 0f || isSliding))  
+
+
+
+        if (Input.GetButtonDown("Fire1") && (coyoteCounter > 0f || isSliding)) //Esse metodo define que é possivel pular
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
-            
+
         }
 
 
 
-        else if (Input.GetButtonUp("Fire1"))
+        else if (Input.GetButtonUp("Fire1")) //Funcao do pulo variavel
         {
             rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
             coyoteCounter = 0f;
@@ -173,21 +172,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void FastFall()
+    void CairMaisRApido() //Dá pra a mecanica de planar com isso, -1 já plana 
     {
       
-        if (rigPlayer.linearVelocity.y < 0)
+      if(rigPlayer.linearVelocityY < maxfallspeed)
         {
-            rigPlayer.linearVelocity += Vector2.up * Physics2D.gravity.y * (normalFallSpeed - 1f)  * Time.deltaTime;
+            rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocityX, maxfallspeed); //Isso faz com que ele atinga a velocidade setada na variavel de MaxfallSpeed
         }
-       
-        //Agora funciona normal
-        
-        if (rigPlayer.linearVelocity.y < 0 && Input.GetAxis("Vertical") < 0f)
-        {
-          rigPlayer.linearVelocity += Vector2.up * Physics2D.gravity.y * (fastFallSpeed - 0.5f)  * Time.deltaTime;
-        }
-
        
         
     }
@@ -195,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
     
     void WallSlide()
     {
-        if(isWallTouch && Input.GetAxis("Horizontal") != 0f)
+        if(isWallTouch && Input.GetAxis("Horizontal") != 0f) 
         {
             isSliding = true;
         }
@@ -220,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         isDashing = true;
 
-        float directionDash = srPlayer.flipX ? -1f : 1f;
+        float directionDash = srPlayer.flipX ? -1f : 1f; //Rever essa linha para colocar oq significa 
         
         
         float originalGravity = rigPlayer.gravityScale;
@@ -228,17 +219,17 @@ public class PlayerMovement : MonoBehaviour
         rigPlayer.linearVelocity = Vector2.zero;
         rigPlayer.linearVelocity = new Vector2 (directionDash * dashPower, 0f);
         tr.emitting = true;
-        
+                                                                                //Dashei
         yield return new WaitForSeconds(dashTime);
         tr.emitting = false;
         rigPlayer.linearVelocity = Vector2.zero;
-        
+                                                                                //DesDashei
         rigPlayer.gravityScale = originalGravity;
         isDashing = false;
-        
+                                                                             
         yield return new WaitForSeconds(dashCooldowm);
         canDash = true;
-    
+                                                                                //Posso Dashar dnv
      }
 
 
@@ -325,15 +316,5 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-   /* void PlayerDialogue()
-    {
-        if (Mathf.Abs(transform.position.x - NpcTransform.position.x) < 2f )
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                dialogueFunction.Next();
-            }
-        }
-    }
-   */
+  
 }
