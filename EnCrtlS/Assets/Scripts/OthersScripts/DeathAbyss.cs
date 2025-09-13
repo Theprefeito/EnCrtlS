@@ -30,7 +30,7 @@ public class DeathAbyss : MonoBehaviour
         if (transform.position.y < limitsY)
         {
             transform.position = respawnPoint.transform.position;
-            transitionAnim.SetTrigger("isClose");
+
             
         }
     }

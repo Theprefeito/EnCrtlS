@@ -9902,6 +9902,7 @@ GameObject:
   - component: {fileID: 1046200980}
   - component: {fileID: 1046200979}
   - component: {fileID: 1046200978}
+  - component: {fileID: 1046200981}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10059,6 +10060,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1046200981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046200974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d533b3363654ae44f8ac6dea2b02bdcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionScene: {fileID: 1915075136}
 --- !u!4 &1054977849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1387999813975231903, guid: eaee53e0290d3d44ea23a6d4712e1fbb, type: 3}
@@ -11509,6 +11523,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Transition
       objectReference: {fileID: 0}
+    - target: {fileID: 2781784714265972594, guid: 3fd78148667a28047abfe2c044eeddff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043515685038420884, guid: 3fd78148667a28047abfe2c044eeddff, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1046200976}
+    - target: {fileID: 7043515685038420884, guid: 3fd78148667a28047abfe2c044eeddff, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043515685038420884, guid: 3fd78148667a28047abfe2c044eeddff, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2039532679
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11517,6 +11547,11 @@ PrefabInstance:
 --- !u!95 &1915075135 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2684817290526698524, guid: 3fd78148667a28047abfe2c044eeddff, type: 3}
+  m_PrefabInstance: {fileID: 1915075134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1915075136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2781784714265972594, guid: 3fd78148667a28047abfe2c044eeddff, type: 3}
   m_PrefabInstance: {fileID: 1915075134}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1936709698 stripped
