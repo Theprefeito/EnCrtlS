@@ -18,12 +18,16 @@ MonoBehaviour:
       tudo?"
     npcName: Rei
     npcIcon: {fileID: 1746982975475920463, guid: 5ab0986d9407f714286eca1c5cd9bd29, type: 3}
+    voiceSound: {fileID: 8300000, guid: 24172f902d059bb40891b519038d2e4f, type: 3}
   - textDialogue: Seloko
     npcName: Coringa
     npcIcon: {fileID: -3315247072422729063, guid: 438786b00517f1d48afea18b615f22a0, type: 3}
+    voiceSound: {fileID: 8300000, guid: 2febdb304df1f004a85491fed88f42f8, type: 3}
   - textDialogue: "Hora bolas, n\xE3o haja assim, tenha d\xF3"
     npcName: Rei
     npcIcon: {fileID: 1746982975475920463, guid: 5ab0986d9407f714286eca1c5cd9bd29, type: 3}
+    voiceSound: {fileID: 8300000, guid: 24172f902d059bb40891b519038d2e4f, type: 3}
   - textDialogue: Seloko
     npcName: Coringa
     npcIcon: {fileID: 8862816369831031920, guid: 03f208e26c89fc44eadcefea7663223a, type: 3}
+    voiceSound: {fileID: 8300000, guid: 2febdb304df1f004a85491fed88f42f8, type: 3}

@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigPlayer;
     private SpriteRenderer srPlayer;
     private Animator animPlayer;
-    private bool canMove = true;
+    public bool canMove = true;
 
     [Header("Jump")]
     [SerializeField] float jumpStrange;

@@ -11,6 +11,7 @@ public class MultipleDialogue
 
     public string npcName;
     public Sprite npcIcon;
+    public AudioClip voiceSound;
 }
 
 
