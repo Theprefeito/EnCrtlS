@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedPlayer: 5
+  canMove: 1
   jumpStrange: 11
   groundCheck: {fileID: 2029929696502985288}
   groundLayer:
@@ -193,8 +194,20 @@ MonoBehaviour:
   tr: {fileID: 4790808556497641786}
   dashPower: 7
   dashTime: 0.2
+  wallJumpingDirection: 0
+  wallJumpingTime: 0.2
+  wallJumpingDuration: 0.4
+  wallJumpingPower: {x: 8, y: 16}
+  maxfallspeed: -30
+  wallCheck: {fileID: 0}
+  isWallTouch: 0
+  isSliding: 0
+  wallSlidingSpeed: 0
   coyoteTime: 0.2
   coyoteCounter: 0
+  NpcTransform: {fileID: 0}
+  dashSound: {fileID: 8300000, guid: 6bc1bf5354df9a3479264c1bbaa082b0, type: 3}
+  jumpSound: {fileID: 8300000, guid: 85e477c335f2aa9499e48a95bc105822, type: 3}
 --- !u!114 &4418620146158340009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   limitsX: -9
   limitsY: -7
+  soundDeath: {fileID: 8300000, guid: 8213fc1b5c347ce489676bf216d6122b, type: 3}
   transitionAnim: {fileID: 0}
   respawnPoint: {fileID: 0}
 --- !u!96 &4790808556497641786

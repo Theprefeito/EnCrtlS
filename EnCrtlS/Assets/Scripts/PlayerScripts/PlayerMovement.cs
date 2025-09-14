@@ -58,7 +58,11 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] Transform NpcTransform;
 
-    
+    [Header("Audio")]
+    public AudioClip dashSound;
+    public AudioClip jumpSound;
+
+
     void Start()
     {
         rigPlayer = GetComponent<Rigidbody2D>();
@@ -112,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canMove)
+        if (canMove && !isWallJumping)
         {
             Move();
         }
@@ -159,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && coyoteCounter > 0f) //Esse metodo define que é possivel pular
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
-
+            SoundsScript.instance.SoundExecuter(jumpSound);
         }
 
         else if (Input.GetButtonUp("Fire1") && rigPlayer.linearVelocityY > 0f) //Funcao do pulo variavel
@@ -221,6 +225,7 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = true;
             rigPlayer.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y); //adiciona a força diagonal do wall jump
             wallJumpingCounter = 0f; //Reseta o timer
+            SoundsScript.instance.SoundExecuter(jumpSound);
 
             StartCoroutine(StopWallJumping()); //cancela o wall jump
         }
@@ -232,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator StopWallJumping()
     {
         yield return new WaitForSeconds(wallJumpingDuration);
-        rigPlayer.linearVelocity = Vector2.zero;
+        rigPlayer.linearVelocity = new Vector2(0f, rigPlayer.linearVelocity.y * 0.5f);
         isWallJumping = false; //cancela o wall jump
     }
 
@@ -244,8 +249,8 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
 
         float directionDash = srPlayer.flipX ? -1f : 1f; //Rever essa linha para colocar oq significa 
-        
-        
+        SoundsScript.instance.SoundExecuter(dashSound);
+
         float originalGravity = rigPlayer.gravityScale;
         rigPlayer.gravityScale = 0f;
         rigPlayer.linearVelocity = Vector2.zero;

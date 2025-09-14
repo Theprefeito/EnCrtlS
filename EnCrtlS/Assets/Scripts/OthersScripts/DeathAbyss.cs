@@ -5,6 +5,7 @@ public class DeathAbyss : MonoBehaviour
 {
     public float limitsX;
     public float limitsY;
+    [SerializeField] AudioClip soundDeath;
     [SerializeField] Animator transitionAnim;
     [SerializeField] GameObject respawnPoint;
 
@@ -29,9 +30,8 @@ public class DeathAbyss : MonoBehaviour
         
         if (transform.position.y < limitsY)
         {
+            SoundsScript.instance.SoundExecuter(soundDeath);
             transform.position = respawnPoint.transform.position;
-
-            
         }
     }
 }
