@@ -9665,6 +9665,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 291511249}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: speedPlayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: NpcTransform
       value: 
       objectReference: {fileID: 316453563}
@@ -9710,7 +9714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: wallJumpingPower.y
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: wallJumpingDuration

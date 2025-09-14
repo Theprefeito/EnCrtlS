@@ -4372,6 +4372,7 @@ GameObject:
   - component: {fileID: 1616268833}
   - component: {fileID: 1616268832}
   - component: {fileID: 1616268834}
+  - component: {fileID: 1616268835}
   m_Layer: 0
   m_Name: Room (1)
   m_TagString: Room
@@ -4454,6 +4455,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkPointPosition: {x: -6.531, y: -2.9}
   respawn: {fileID: 2078791852}
+--- !u!114 &1616268835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616268831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf58a6daf6201a442a357a8534e21923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1809693182}
+  minX: 15
+  maxX: 100
+  minY: 0
+  maxY: 0
 --- !u!1 &1622814745
 GameObject:
   m_ObjectHideFlags: 0
