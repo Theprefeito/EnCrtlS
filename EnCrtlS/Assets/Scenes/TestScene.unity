@@ -9706,11 +9706,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: wallJumpingPower.x
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: wallJumpingPower.y
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: wallJumpingDuration
