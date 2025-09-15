@@ -7,7 +7,7 @@ public class MobilleRoom : MonoBehaviour
     [SerializeField] float minX, maxX; 
     [SerializeField] float minY, maxY; 
     public Vector2 startPosition;
-    public bool estamorto;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,14 +38,14 @@ public class MobilleRoom : MonoBehaviour
 
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    /*private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             transform.position = startPosition; //Caso o player saia da sala a posição da sala é resetada
         }
     }
-    
+    */
     void PlayerDead()
     {
         if (player.position.y < -6f)
