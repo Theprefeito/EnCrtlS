@@ -6,7 +6,8 @@ public class MobilleRoom : MonoBehaviour
     [SerializeField] Transform player; 
     [SerializeField] float minX, maxX; 
     [SerializeField] float minY, maxY; 
-    private Vector2 startPosition;
+    public Vector2 startPosition;
+    public bool estamorto;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +33,9 @@ public class MobilleRoom : MonoBehaviour
 
             transform.position = new Vector3(wayX, wayY, transform.position.z); //faz com que a Sala siga o player com base no "caminho"
         }
+
+        
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -41,13 +45,13 @@ public class MobilleRoom : MonoBehaviour
             transform.position = startPosition; //Caso o player saia da sala a posição da sala é resetada
         }
     }
-
+    
     void PlayerDead()
     {
-        if (player.position.y < -7f)
+        if (player.position.y < -6f)
         {
             transform.position = startPosition; //Caso o player morra a posição da sala é resetada
         }
     }
-
+    
 }
