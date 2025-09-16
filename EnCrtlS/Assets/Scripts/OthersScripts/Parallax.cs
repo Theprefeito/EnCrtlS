@@ -11,7 +11,7 @@ public class ParallaxBackground : MonoBehaviour
     [SerializeField] private float efectParallax = 0.2f;
     
     private float spriteWidth;
-    private float spriteWidth2;
+  
     private Vector3 lastCamPos;
     
     private Transform [] Backgrounds = new Transform [2]; // = Quantidade de fundos completos 
@@ -35,7 +35,7 @@ public class ParallaxBackground : MonoBehaviour
         
         
         spriteWidth = Backgrounds[0].GetComponent<SpriteRenderer>().bounds.size.x;
-        spriteWidth2 = Backgrounds[0].GetComponent<SpriteRenderer>().bounds.size.y;
+      
     }
 
     void LateUpdate()
@@ -44,7 +44,7 @@ public class ParallaxBackground : MonoBehaviour
         Vector3 FollowMovent = cam.position - lastCamPos;
         
         transform.position += new Vector3 (FollowMovent.x * efectParallax, 0, 0);
-        transform.position += new Vector3 (0, FollowMovent.y * efectParallax, 0);
+      
         lastCamPos = cam.position;
 
         foreach (var background in Backgrounds)
@@ -55,14 +55,6 @@ public class ParallaxBackground : MonoBehaviour
                 float offset = (camDistance > 0) ? spriteWidth * 2f: -spriteWidth * 2f;
                 background.position += new Vector3(offset, 0, 0);
             }
-
-            float camDistance2 = cam.position.y - background.position.y;
-            if (Mathf.Abs(camDistance2) >= spriteWidth2)s
-            {
-                float offset2 = (camDistance2 > 0) ? spriteWidth2 * 2f: -spriteWidth2 * 2f;
-                background.position += new Vector3(0, offset2, 0);
-            }
-
 
         }
         
