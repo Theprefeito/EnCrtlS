@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ public class DeathAbyss : MonoBehaviour
 {
     public float limitsX;
     public float limitsY;
+    public bool playerIsDead = false;
     [SerializeField] AudioClip soundDeath;
     [SerializeField] Animator transitionAnim;
     [SerializeField] GameObject respawnPoint;
@@ -30,8 +32,31 @@ public class DeathAbyss : MonoBehaviour
         
         if (transform.position.y < limitsY)
         {
-            SoundsScript.instance.SoundExecuter(soundDeath);
-            transform.position = respawnPoint.transform.position;
+            StartCoroutine(PlayerDie());
         }
     }
+
+    public IEnumerator PlayerDie()
+    {
+        SoundsScript.instance.SoundExecuter(soundDeath);
+        transform.position = respawnPoint.transform.position;
+        playerIsDead = true;
+        yield return new WaitForSeconds(0.5f);
+        playerIsDead = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            
+            //GetComponent<Animator>().SetTrigger("Dead");
+            //GetComponent<PlayerMovement>().enabled = false;
+
+
+            StartCoroutine(PlayerDie());
+        }
+
+    }
+
 }
