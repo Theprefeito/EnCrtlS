@@ -1959,7 +1959,7 @@ Transform:
   m_GameObject: {fileID: 653736767}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.6, y: 35.12, z: 0.017363805}
+  m_LocalPosition: {x: 12.03, y: 35.12, z: 0.017363805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1978,12 +1978,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1809693182}
-  minX: 15
+  minX: 20
   maxX: 100
   minY: 34
   maxY: 34
   startPosition: {x: 0, y: 0}
-  estamorto: 0
 --- !u!114 &653736770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4755,7 +4754,6 @@ MonoBehaviour:
   minY: 11
   maxY: 28
   startPosition: {x: 0, y: 0}
-  estamorto: 0
 --- !u!1001 &2029446139
 PrefabInstance:
   m_ObjectHideFlags: 0
