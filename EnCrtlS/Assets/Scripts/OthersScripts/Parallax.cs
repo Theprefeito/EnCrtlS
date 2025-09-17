@@ -8,8 +8,8 @@ public class ParallaxBackground : MonoBehaviour
 {  
     
     [SerializeField] Transform cam;
-    [SerializeField] private float efectParallax = 0.2f;
-    
+    [SerializeField] private float efectParallaxInX = 0.2f;
+    [SerializeField] private float efectParallaxInY = 0.2f;
     private float spriteWidth;
   
     private Vector3 lastCamPos;
@@ -43,7 +43,8 @@ public class ParallaxBackground : MonoBehaviour
         
         Vector3 FollowMovent = cam.position - lastCamPos;
         
-        transform.position += new Vector3 (FollowMovent.x * efectParallax, 0, 0);
+        transform.position += new Vector3 (FollowMovent.x * efectParallaxInX, FollowMovent.y * efectParallaxInY, 0);
+
       
         lastCamPos = cam.position;
 

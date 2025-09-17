@@ -37,7 +37,10 @@ public class FallPlatform : MonoBehaviour
             StartCoroutine(FallthePlatform());
             Fall = true;
         }
-
+        else Fall = false;
+        {
+            StartCoroutine(ResetAfterTouch());
+        }
       
        
         
@@ -57,7 +60,7 @@ public class FallPlatform : MonoBehaviour
         {
             if (gameObject.activeSelf)
             {
-                Reset();
+                ResetAfterDeath();
                 gameObject.SetActive(true);
             }
         }
@@ -67,13 +70,18 @@ public class FallPlatform : MonoBehaviour
         
     }   
     
-     public void Reset()
+     public void ResetAfterDeath()
      {
              gameObject.SetActive(true);
              transform.position = initPos;
              rb.bodyType = RigidbodyType2D.Static;
-             rb.linearVelocity = Vector2.zero;
-             
      }
     
+    private IEnumerator ResetAfterTouch()
+    {
+        yield return new WaitForSeconds(8);
+        gameObject.SetActive(true);
+        transform.position = initPos;
+        rb.bodyType = RigidbodyType2D.Static;
+    }
 }
