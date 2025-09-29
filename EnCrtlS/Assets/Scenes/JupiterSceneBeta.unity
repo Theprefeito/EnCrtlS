@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timetofall: 0.3
-  Timetodestroy: 1.5
+  Timetodestroy: 6
   player: {fileID: 1809693182}
   Fall: 0
   rb: {fileID: 385498440}
@@ -4745,7 +4745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timetofall: 0.3
-  Timetodestroy: 1.5
+  Timetodestroy: 6
   player: {fileID: 1809693182}
   Fall: 0
   rb: {fileID: 2072313512}
@@ -5352,6 +5352,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6003337120062044316, guid: df4b5edcbbec6164b97101fce8b65b1c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457500949982183782, guid: df4b5edcbbec6164b97101fce8b65b1c, type: 3}
+      propertyPath: Fall
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6457500949982183782, guid: df4b5edcbbec6164b97101fce8b65b1c, type: 3}
