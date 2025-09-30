@@ -9644,6 +9644,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 965171782972497149, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: m_Mass
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 1400006324033388184, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9660,13 +9664,17 @@ PrefabInstance:
       propertyPath: transitionAnim
       value: 
       objectReference: {fileID: 1915075135}
+    - target: {fileID: 4790808556497641786, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: m_Emitting
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: wallCheck
       value: 
       objectReference: {fileID: 291511249}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: speedPlayer
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: NpcTransform
@@ -9674,7 +9682,7 @@ PrefabInstance:
       objectReference: {fileID: 316453563}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: maxfallspeed
-      value: -30
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: fastFallSpeed

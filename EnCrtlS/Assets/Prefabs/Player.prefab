@@ -109,7 +109,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1.4
+  m_Mass: 1.7
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1.2
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4427619ff69b31e4b8e2b5dd83df29ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedPlayer: 6
+  speedPlayer: 5
   canMove: 1
   jumpStrange: 11
   groundCheck: {fileID: 2029929696502985288}
@@ -198,7 +198,7 @@ MonoBehaviour:
   wallJumpingTime: 0.2
   wallJumpingDuration: 0.3
   wallJumpingPower: {x: 8, y: 8}
-  maxfallspeed: -30
+  maxfallspeed: -100
   wallCheck: {fileID: 0}
   isWallTouch: 0
   isSliding: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   limitsX: -9
   limitsY: -7
+  playerIsDead: 0
   soundDeath: {fileID: 8300000, guid: 8213fc1b5c347ce489676bf216d6122b, type: 3}
   transitionAnim: {fileID: 0}
   respawnPoint: {fileID: 0}
