@@ -7,8 +7,7 @@ public class FallPlatform : MonoBehaviour
    
 
     public float Timetofall = 0.3f;
-    public int Timetodestroy = 6;
-
+  
     [SerializeField] Transform player;
 
 
@@ -19,22 +18,22 @@ public class FallPlatform : MonoBehaviour
 
     private Vector3 initPos;
 
-    private Renderer Fallrend;
+   
+
+
+    private Coroutine FallCoroutine;
 
     private IEnumerator FallthePlatform()
     {
         yield return new WaitForSeconds(Timetofall);
         rb.bodyType = RigidbodyType2D.Dynamic;
 
-        if (!Fallrend.isVisible)
-        {
-            gameObject.SetActive(false);
-        }
 
-        yield return new WaitForSeconds(8);
-        gameObject.SetActive(true);
-        transform.position = initPos;
-        rb.bodyType = RigidbodyType2D.Static;
+        yield return new WaitForSeconds(6);
+        ResetAfterDeath();
+
+        FallCoroutine = null;
+       
     }
 
 
@@ -42,8 +41,13 @@ public class FallPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(FallthePlatform());
-            Fall = true;
+            
+            if (FallCoroutine == null)
+            {
+              FallCoroutine = StartCoroutine(FallthePlatform());
+            }
+            
+           Fall = true;
         }
       
        
@@ -54,7 +58,7 @@ public class FallPlatform : MonoBehaviour
     void Start()
     {
         initPos = transform.position;
-        Fallrend = GetComponent<Renderer>();
+       
     }
 
     
@@ -77,10 +81,22 @@ public class FallPlatform : MonoBehaviour
     
      public void ResetAfterDeath()
      {
+           
+        if (FallCoroutine != null)
+        {
+            StopCoroutine(FallCoroutine);
+            FallCoroutine = null;
+        }
+        
+        
+        
+        
              gameObject.SetActive(true);
              transform.position = initPos;
              rb.bodyType = RigidbodyType2D.Static;
+
+             
      }
     
-   
+  
 }
