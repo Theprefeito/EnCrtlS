@@ -414,7 +414,7 @@ Transform:
   m_GameObject: {fileID: 152309424}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.65, y: 2.1656, z: 0.04649639}
+  m_LocalPosition: {x: 1.46, y: 1.61, z: 0.04649639}
   m_LocalScale: {x: 2.1434371, y: 1.4881773, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5476,6 +5476,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 965171782972497149, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: m_GravityScale
+      value: 3.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1400006324033388184, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5492,6 +5496,18 @@ PrefabInstance:
       propertyPath: wallCheck
       value: 
       objectReference: {fileID: 1047698024}
+    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: jumpStrange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: speedPlayer
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: wallJumpingPower.y
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

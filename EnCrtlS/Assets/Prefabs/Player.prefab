@@ -112,7 +112,7 @@ Rigidbody2D:
   m_Mass: 1.7
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1.2
+  m_GravityScale: 3.3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -182,9 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4427619ff69b31e4b8e2b5dd83df29ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedPlayer: 5
+  speedPlayer: 5.5
   canMove: 1
-  jumpStrange: 11
+  jumpStrange: 20
   groundCheck: {fileID: 2029929696502985288}
   groundLayer:
     serializedVersion: 2
@@ -197,7 +197,7 @@ MonoBehaviour:
   wallJumpingDirection: 0
   wallJumpingTime: 0.2
   wallJumpingDuration: 0.3
-  wallJumpingPower: {x: 8, y: 8}
+  wallJumpingPower: {x: 8, y: 11}
   maxfallspeed: -100
   wallCheck: {fileID: 0}
   isWallTouch: 0
