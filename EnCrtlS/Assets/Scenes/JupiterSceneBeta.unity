@@ -920,7 +920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timetofall: 0.3
-  Timetodestroy: 6
+  Timetodestroy: 1
   player: {fileID: 1809693182}
   Fall: 0
   rb: {fileID: 385498440}
@@ -4960,7 +4960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timetofall: 0.3
-  Timetodestroy: 6
+  Timetodestroy: 1
   player: {fileID: 1809693182}
   Fall: 0
   rb: {fileID: 2072313512}
@@ -5653,11 +5653,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 190877663285034809, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.531
+      value: 13.9
       objectReference: {fileID: 0}
     - target: {fileID: 190877663285034809, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 190877663285034809, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_LocalPosition.z
