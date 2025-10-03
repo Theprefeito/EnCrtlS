@@ -21,7 +21,7 @@ public class FallPlatform : MonoBehaviour
    
 
 
-    private Coroutine FallCoroutine;
+  
 
     private IEnumerator FallthePlatform()
     {
@@ -32,7 +32,7 @@ public class FallPlatform : MonoBehaviour
         yield return new WaitForSeconds(6);
         ResetAfterDeath();
 
-        FallCoroutine = null;
+       // FallCoroutine = null;
        
     }
 
@@ -41,12 +41,8 @@ public class FallPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            
-            if (FallCoroutine == null)
-            {
-              FallCoroutine = StartCoroutine(FallthePlatform());
-            }
-            
+            StartCoroutine(FallthePlatform());
+     
            Fall = true;
         }
       
@@ -82,13 +78,7 @@ public class FallPlatform : MonoBehaviour
      public void ResetAfterDeath()
      {
            
-        if (FallCoroutine != null)
-        {
-            StopCoroutine(FallCoroutine);
-            FallCoroutine = null;
-        }
-        
-        
+      
         
         
              gameObject.SetActive(true);
