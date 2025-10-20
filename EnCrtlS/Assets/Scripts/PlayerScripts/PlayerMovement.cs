@@ -4,6 +4,8 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.InputSystem;
+using UnityEditor.Experimental.GraphView;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer srPlayer;
     private Animator animPlayer;
     public bool canMove = true;
+    public Vector2 direcao;
 
     [Header("Jump")]
     [SerializeField] float jumpStrange;
@@ -70,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         animPlayer = GetComponent<Animator>();        
     }
 
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -94,23 +97,15 @@ public class PlayerMovement : MonoBehaviour
                 AnimationJumpPlayer();
             }
         }
-       
-        Jump(); //esse � o void Jump
-        
+               
         if (isDashing)
         {
             return;
         }
-       
-        if (Input.GetButtonDown("Fire2") && canDash)
-        {
-            StartCoroutine(Dash());
-        }
-        
+                      
         WallSlide();
         CairMaisRApido();
-        inFloor();
-        WallJump();
+        inFloor();       
     }
 
 
@@ -135,21 +130,26 @@ public class PlayerMovement : MonoBehaviour
     {
        return  Physics2D.OverlapCircle(groundCheck.position, 0.2f ,groundLayer); //Serve pra definir se está no chão ou não
     }
-   
+
+    public void analogicMove(InputAction.CallbackContext context)
+    {
+        direcao = context.ReadValue<Vector2>();
+    }
+    
     void Move()
     {
         
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f); //Variavel que define a direção que vc está indo
+        Vector3 movement = new Vector3(direcao.x, 0f, 0f); //Variavel que define a direção que vc está indo
         transform.position += movement * Time.deltaTime * speedPlayer; //Serve para mover o Player
 
-        if (Input.GetAxis("Horizontal") > 0f)
+        if (direcao.x > 0f)
         {
            
            srPlayer.flipX = false; //Flipa o player para a direita
            wallJumpingDirection = -1f;
         }
        
-        if (Input.GetAxis("Horizontal") < 0f)
+        if (direcao.x < 0f)
         {
            
            srPlayer.flipX = true; //Flipa o player para a esquerda
@@ -158,15 +158,15 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void Jump()
+    public void Jump(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Fire1") && coyoteCounter > 0f) //Esse metodo define que é possivel pular
+        if (context.performed && coyoteCounter > 0f) //Esse metodo define que é possivel pular
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
             SoundsScript.instance.SoundExecuter(jumpSound);
         }
 
-        else if (Input.GetButtonUp("Fire1") && rigPlayer.linearVelocityY > 0f) //Funcao do pulo variavel
+        else if (context.canceled && rigPlayer.linearVelocityY > 0f) //Funcao do pulo variavel
         {
             rigPlayer.linearVelocity = new Vector2(rigPlayer.linearVelocity.x, rigPlayer.linearVelocity.y * 0.5f);
             coyoteCounter = 0f;
@@ -188,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
     
     void WallSlide()
     {
-        if(isWallTouch && Input.GetAxis("Horizontal") != 0f)  //Serve para ele só dar slide se tiver presionando o botão da direção da parede
+        if(isWallTouch && direcao.x != 0f)  //Serve para ele só dar slide se tiver presionando o botão da direção da parede
         {
             isSliding = true;
         }
@@ -206,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void WallJump()
+    public void WallJump(InputAction.CallbackContext context)
     {
         if (isSliding)
         {
@@ -220,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime; //inicia do timer do wall jump
         }
 
-        if (Input.GetButtonDown("Fire1") && wallJumpingCounter > 0f) //quando precionar o botao de pulo inicia o wall jump
+        if (context.performed && wallJumpingCounter > 0f) //quando precionar o botao de pulo inicia o wall jump
         {
             isWallJumping = true;
             rigPlayer.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y); //adiciona a força diagonal do wall jump
@@ -241,6 +241,13 @@ public class PlayerMovement : MonoBehaviour
         isWallJumping = false; //cancela o wall jump
     }
 
+    public void analogicDash(InputAction.CallbackContext context)
+    {
+        if (context.performed && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+    }
 
     private IEnumerator Dash()
      {
@@ -289,7 +296,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FlipWallCheck()
     {
-        if (Input.GetAxis("Horizontal") > 0f)
+        if (direcao.x > 0f)
         {
             if (isFacingRight)
             {
@@ -302,7 +309,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetAxis("Horizontal") < 0f)
+        if (direcao.x < 0f)
         {
             if (!isFacingRight)
             {
@@ -353,7 +360,7 @@ public class PlayerMovement : MonoBehaviour
 
     void AnimationWalkPlayer()
     {
-        float speedForAnimations = Input.GetAxis("Horizontal"); //é usado apenas usado neste caso
+        float speedForAnimations = direcao.x; //é usado apenas usado neste caso
         animPlayer.SetFloat("Speed", math.abs(speedForAnimations));
         animPlayer.SetBool("IsFall", false);
         animPlayer.SetBool("isJump", false);

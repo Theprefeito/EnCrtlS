@@ -1,5 +1,6 @@
 using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class JupiterCloud : MonoBehaviour
 {
@@ -18,48 +19,20 @@ public class JupiterCloud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MecanicaDeJupiter();
-        Flip();
+        
+        
         Reset();
     }
 
-    void MecanicaDeJupiter()
+    public void MecanicaDeJupiter(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Fire3") && ammunition > 0)
+        if (context.performed && ammunition > 0)
         {
             Instantiate(cloud, attackCheck.position, attackCheck.rotation);
             ammunition--;
         }
     }
-
-    void Flip()
-    {
-        if (Input.GetAxis("Horizontal") > 0f)
-        {
-            if (isFacingRight)
-            {
-                Vector3 attackPos = attackCheck.localPosition;
-                attackPos.x *= -1;
-                attackCheck.localPosition = attackPos;
-
-                isFacingRight = false;
-            }
-        }
-
-        if (Input.GetAxis("Horizontal") < 0f)
-        {
-            if (!isFacingRight)
-            {
-                Vector3 attackPos = attackCheck.localPosition;
-                attackPos.x *= -1;
-                attackCheck.localPosition = attackPos;
-
-                isFacingRight = true;
-            }
-        }
-
-    }
-
+    
     private void Reset()
     {
         if (transform.position.y < -6)
