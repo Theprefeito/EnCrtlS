@@ -188,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
     
     void WallSlide()
     {
-        if(isWallTouch && direcao.x != 0f)  //Serve para ele só dar slide se tiver presionando o botão da direção da parede
+        if(isWallTouch && direcao.x != 0f && coyoteCounter < coyoteTime)  //Serve para ele só dar slide se tiver presionando o botão da direção da parede
         {
             isSliding = true;
         }
@@ -237,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator StopWallJumping()
     {
         yield return new WaitForSeconds(wallJumpingDuration);
-        rigPlayer.linearVelocity = new Vector2(0f, rigPlayer.linearVelocity.y * 0.5f);
+        rigPlayer.linearVelocity = new Vector2(0f, rigPlayer.linearVelocity.y * 0.5f);                
         isWallJumping = false; //cancela o wall jump
     }
 
