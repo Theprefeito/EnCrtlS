@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagPlayer: Player
+  respawnTime: 1
   player: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
 --- !u!61 &8936680171426255125

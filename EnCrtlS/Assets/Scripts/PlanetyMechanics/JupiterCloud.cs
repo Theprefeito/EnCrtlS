@@ -18,9 +18,7 @@ public class JupiterCloud : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-        
+    {                
         Reset();
     }
 
@@ -36,11 +34,8 @@ public class JupiterCloud : MonoBehaviour
     private void Reset()
     {
         if (transform.position.y < -6)
-        {
-            
-            
-
-            ammunition = 1;
+        {                       
+            ammunition = 0;
         }
     }
 }

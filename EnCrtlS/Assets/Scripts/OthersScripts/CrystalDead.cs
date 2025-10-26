@@ -1,41 +1,60 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class CrystalDead : MonoBehaviour
 {
     [SerializeField] string tagPlayer;
+    [SerializeField] float respawnTime;
     [SerializeField] Transform player;
-    [SerializeField] Vector3 startPosition;
+    private bool onDead = false;
+    private SpriteRenderer srCrystal;
     JupiterCloud jupiter;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        startPosition = transform.position;
-        jupiter = GetComponent<JupiterCloud>();    
+        jupiter = GetComponent<JupiterCloud>();
+        srCrystal = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
+    {       
+        EnableSrCrystal();
+    }
+
+    private void EnableSrCrystal()
     {
-        if (player.transform.position.y < -6)
+
+        if (onDead)
         {
-            transform.position = startPosition;
+            srCrystal.enabled = false;
         }
+
+        else
+        {
+            srCrystal.enabled = true;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(tagPlayer))
-        {
-            // Aqui você pode aplicar o efeito do power-up:
-            // exemplo: dar vida, velocidade, pulo duplo etc.
-            //Debug.Log("Power-up coletado!");
-            collision.GetComponent<JupiterCloud>().ammunition = 1;
+        if (collision.CompareTag(tagPlayer) && !onDead)
+        {           
+            collision.GetComponent<JupiterCloud>().ammunition = 1; //Seta a munição para 1
 
-            // Destroi o power-up
-            transform.position = new Vector3(-800, -800, 0);
+            
+            StartCoroutine(crystalMissing()); // Destroi o power-up
         }
+    }
+
+    private IEnumerator crystalMissing()
+    {        
+        onDead = true;
+        yield return new WaitForSeconds(respawnTime);
+        onDead = false;        
     }
 
 }
