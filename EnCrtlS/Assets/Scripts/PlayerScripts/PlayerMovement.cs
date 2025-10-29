@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && coyoteCounter > 0f) //Esse metodo define que é possivel pular
+        if (context.performed && coyoteCounter > 0f && !isDashing) //Esse metodo define que é possivel pular
         {
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
             SoundsScript.instance.SoundExecuter(jumpSound);
