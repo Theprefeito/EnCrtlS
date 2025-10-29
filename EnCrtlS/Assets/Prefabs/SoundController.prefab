@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8255592584704556674}
   - component: {fileID: 7952393764902584675}
   - component: {fileID: 2552484685825673293}
+  - component: {fileID: 4427745134330591635}
   m_Layer: 0
   m_Name: SoundController
   m_TagString: Untagged
@@ -54,9 +55,9 @@ AudioSource:
   m_GameObject: {fileID: 7243727760900161256}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6676205160028725646, guid: d4b07396d9ebc5544ae5b4005cffd580, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: b2566f2f4b2693f40a2fc369ab9c2920, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -142,3 +143,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4427745134330591635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7243727760900161256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e796d911d855cc4daface0b02ca46be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioControler
+  audioMixer: {fileID: 24100000, guid: d4b07396d9ebc5544ae5b4005cffd580, type: 2}
+  volume: 0
+  slider: {fileID: 0}
+  texto: {fileID: 0}
