@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] int jumpNumber;
+    private bool Canjump;
     
     public bool isDoubleJump;
 
@@ -162,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed && coyoteCounter > 0f && !isDashing) //Esse metodo define que é possivel pular
         {
+            Canjump = true;
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
             SoundsScript.instance.SoundExecuter(jumpSound);
         }
@@ -270,6 +272,12 @@ public class PlayerMovement : MonoBehaviour
                                                                                 //DesDashei
         rigPlayer.gravityScale = originalGravity;
         isDashing = false;
+
+        if(Canjump)
+        {
+            rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
+            SoundsScript.instance.SoundExecuter(jumpSound);
+        }
                                                                              
         yield return new WaitForSeconds(dashCooldowm);
         canDash = true;
