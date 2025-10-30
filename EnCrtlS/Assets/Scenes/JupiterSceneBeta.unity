@@ -18143,31 +18143,11 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 201, y: 40, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 185, y: 41, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
       m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 201, y: 41, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -18218,36 +18198,6 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 1
       m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 199, y: 42, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 200, y: 42, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 201, y: 42, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -18617,9 +18567,9 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 14
     m_Data: {fileID: 11400000, guid: cb81690df6e8b8c49b72479fcc1988bd, type: 2}
-  - m_RefCount: 21
-    m_Data: {fileID: 11400000, guid: b2ac518da0ce8ac42aa9c0e4d5514441, type: 2}
   - m_RefCount: 19
+    m_Data: {fileID: 11400000, guid: b2ac518da0ce8ac42aa9c0e4d5514441, type: 2}
+  - m_RefCount: 16
     m_Data: {fileID: 11400000, guid: 2bcfac3b02c8a92409e29c80f2c62ca3, type: 2}
   - m_RefCount: 23
     m_Data: {fileID: 11400000, guid: d76ac8f985f820c4f8dedb7f5f45fcf2, type: 2}
@@ -18628,16 +18578,16 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 14
     m_Data: {fileID: 697355308, guid: 45ae2c23748934d438521c6e0ddc9810, type: 3}
-  - m_RefCount: 21
-    m_Data: {fileID: -1686771025, guid: 45ae2c23748934d438521c6e0ddc9810, type: 3}
   - m_RefCount: 19
+    m_Data: {fileID: -1686771025, guid: 45ae2c23748934d438521c6e0ddc9810, type: 3}
+  - m_RefCount: 16
     m_Data: {fileID: 1236377743, guid: 45ae2c23748934d438521c6e0ddc9810, type: 3}
   - m_RefCount: 23
     m_Data: {fileID: -1839762864, guid: 45ae2c23748934d438521c6e0ddc9810, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 77
+  - m_RefCount: 72
     m_Data:
       e00: 1
       e01: 0
@@ -18656,7 +18606,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 77
+  - m_RefCount: 72
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -20845,8 +20795,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: wallJumpingPower.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: wallJumpingPower.y
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: wallJumpingDuration
