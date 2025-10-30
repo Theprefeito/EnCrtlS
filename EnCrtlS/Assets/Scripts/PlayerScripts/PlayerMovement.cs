@@ -163,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed && coyoteCounter > 0f && !isDashing) //Esse metodo define que é possivel pular
         {
-            Canjump = true;
+           
             rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
             SoundsScript.instance.SoundExecuter(jumpSound);
         }
@@ -273,11 +273,7 @@ public class PlayerMovement : MonoBehaviour
         rigPlayer.gravityScale = originalGravity;
         isDashing = false;
 
-        if(Canjump)
-        {
-            rigPlayer.AddForce(new Vector2(0f, jumpStrange), ForceMode2D.Impulse);
-            SoundsScript.instance.SoundExecuter(jumpSound);
-        }
+       
                                                                              
         yield return new WaitForSeconds(dashCooldowm);
         canDash = true;
