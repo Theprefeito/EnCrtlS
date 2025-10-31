@@ -25,15 +25,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "WallJump",
-                    "type": "Button",
-                    "id": "d2ae1a17-2459-4439-b329-d83d14ad3f48",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "ca54d09b-3023-46fb-b89f-a98ecbd53524",
@@ -191,28 +182,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9a4d9c9d-39f6-40b3-9b71-357f42bf0d78",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WallJump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "96d0e018-5d8b-48dc-b8fe-864b1d2955e7",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WallJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
