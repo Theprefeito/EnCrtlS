@@ -23,7 +23,14 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+       if(pauseMenu.gameObject.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     public void PauseInput(InputAction.CallbackContext context)
@@ -58,7 +65,8 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    
+
+   
     public void Audio()
     {
         PanelVolume.gameObject.SetActive(true);

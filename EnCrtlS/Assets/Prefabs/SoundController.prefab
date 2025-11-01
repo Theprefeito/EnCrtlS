@@ -156,6 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioControler
   audioMixer: {fileID: 24100000, guid: d4b07396d9ebc5544ae5b4005cffd580, type: 2}
-  volume: 0
+  volume: -4
   slider: {fileID: 0}
   texto: {fileID: 0}

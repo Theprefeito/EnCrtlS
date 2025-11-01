@@ -17,7 +17,7 @@ public class AudioControler : MonoBehaviour
     void Start()
     {
         audioMixer.GetFloat("Master", out volume);
-        slider.value = volume;
+        slider.value = -4;  //slider.value = volume //Por algum motivo não começa no que esta setado em volume, então mudança manual para não deixar ninguem surdo
     }
 
 
