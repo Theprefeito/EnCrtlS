@@ -18378,11 +18378,6 @@ Transform:
   - {fileID: 1835249299}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1047698024 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5973054296909532283, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-  m_PrefabInstance: {fileID: 6182181585520004071}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1051019019
 GameObject:
   m_ObjectHideFlags: 0
@@ -21757,155 +21752,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 463630458}
   m_SourcePrefab: {fileID: 100100000, guid: cf64a34c298b178419933d4c365029c8, type: 3}
---- !u!1 &1900499875 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1400006324033388184, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-  m_PrefabInstance: {fileID: 6182181585520004071}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1900499876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900499875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 0f7d3c5c5cddeba438ecc8e73449edec, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1900499877}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: analogicMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ebd2ad7b-53c4-433a-bfe4-dc84f082b9b1
-    m_ActionName: 'Player/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1900499877}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1900499877}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: WallJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8453932b-95ac-465c-b1f8-991936775aab
-    m_ActionName: 'Player/Jump[/XInputControllerWindows/buttonSouth,/Keyboard/c]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1900499877}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: analogicDash
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ca54d09b-3023-46fb-b89f-a98ecbd53524
-    m_ActionName: 'Player/Dash[/XInputControllerWindows/buttonEast,/Keyboard/x]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1900499880}
-        m_TargetAssemblyTypeName: JupiterCloud, Assembly-CSharp
-        m_MethodName: MecanicaDeJupiter
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: c86562f3-bfac-44c1-885c-e72cf7838419
-    m_ActionName: 'Player/Power[/XInputControllerWindows/buttonWest,/Keyboard/z]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 519420034}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: PauseInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a6dbca7b-c12c-4519-b062-f38676f110e3
-    m_ActionName: 'Player/Menu[/XInputControllerWindows/start,/Keyboard/escape]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &1900499877 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-  m_PrefabInstance: {fileID: 6182181585520004071}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900499875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4427619ff69b31e4b8e2b5dd83df29ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1900499880 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8769250438414465055, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-  m_PrefabInstance: {fileID: 6182181585520004071}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900499875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7c43eb22bd611c4cb61a2226b516797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1934188647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4825898968297515543, guid: cf64a34c298b178419933d4c365029c8, type: 3}
@@ -23843,11 +23689,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 190877663285034809, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.4
+      value: 143.4
       objectReference: {fileID: 0}
     - target: {fileID: 190877663285034809, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 28.2
       objectReference: {fileID: 0}
     - target: {fileID: 190877663285034809, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23881,70 +23727,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 965171782972497149, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: m_GravityScale
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1400006324033388184, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2586672386151223949, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 519420034}
     - target: {fileID: 4418620146158340009, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 2078791852}
-    - target: {fileID: 4418620146158340009, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: transitionAnim
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5973054296909532283, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.404
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: wallCheck
-      value: 
-      objectReference: {fileID: 1047698024}
-    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: jumpStrange
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: speedPlayer
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: wallSlidingSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: wallJumpingPower.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: wallJumpingPower.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453484193718783222, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: wallJumpingDuration
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8769250438414465055, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: ammunition
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8769250438414465055, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      propertyPath: attackCheck
-      value: 
-      objectReference: {fileID: 1047698024}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3725891919401237274, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1400006324033388184, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1900499876}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2de6be35c9e0bd34abbd5128b478772c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
