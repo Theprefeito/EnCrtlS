@@ -117,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
             Move();
         }
         CairMaisRApido();
-        FlipWallCheck();
         AnimationPlayer();
 
         if (isDashing)
@@ -143,18 +142,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(direcao.x, 0f, 0f); //Variavel que define a direção que vc está indo
         transform.position += movement * Time.deltaTime * speedPlayer; //Serve para mover o Player
 
-        if (direcao.x > 0f)
+        if (isFacingRight && direcao.x > 0f || !isFacingRight && direcao.x < 0f)
         {
-           
-           srPlayer.flipX = false; //Flipa o player para a direita
-           wallJumpingDirection = -1f;
-        }
-       
-        if (direcao.x < 0f)
-        {
-           
-           srPlayer.flipX = true; //Flipa o player para a esquerda
-           wallJumpingDirection = 1f;
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
     }
 
@@ -214,6 +207,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallJumping = false;            
             wallJumpingCounter = wallJumpingTime; //seta o valor do timer = ao valor da duração do Wall jump
+            wallJumpingDirection = -transform.localScale.x;
 
             CancelInvoke(nameof(StopWallJumping));
         }
@@ -228,6 +222,14 @@ public class PlayerMovement : MonoBehaviour
             rigPlayer.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y); //adiciona a força diagonal do wall jump
             wallJumpingCounter = 0f; //Reseta o timer
             SoundsScript.instance.SoundExecuter(jumpSound);
+
+            if (transform.localScale.x != wallJumpingDirection)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
 
             StartCoroutine(StopWallJumping()); //cancela o wall jump
         }
@@ -257,7 +259,7 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         isDashing = true;
 
-        float directionDash = srPlayer.flipX ? -1f : 1f; //Rever essa linha para colocar oq significa 
+        float directionDash = isFacingRight ? -1f : 1f; //Se isFacingRight for verdadeiro o valor directionDash é igual -1f, se nao é igual 1f
         SoundsScript.instance.SoundExecuter(dashSound);
 
         float originalGravity = rigPlayer.gravityScale;
@@ -297,37 +299,7 @@ public class PlayerMovement : MonoBehaviour
             this.transform.parent = null;
         }
     }
-
-    void FlipWallCheck()
-    {
-        if (direcao.x > 0f)
-        {
-            if (isFacingRight)
-            {
-                Vector3 attackPos = wallCheck.localPosition;
-                attackPos.x *= -1;
-                wallCheck.localPosition = attackPos;
-
-             
-                isFacingRight = false;
-            }
-        }
-
-        if (direcao.x < 0f)
-        {
-            if (!isFacingRight)
-            {
-                Vector3 attackPos = wallCheck.localPosition;
-                attackPos.x *= -1;
-                wallCheck.localPosition = attackPos;
-
-               
-                isFacingRight = true;
-            }
-        }
-
-    }
-
+    
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Room"))
