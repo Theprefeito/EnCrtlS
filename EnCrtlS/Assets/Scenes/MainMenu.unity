@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee8c7ebacdc088488d1f9546a5654e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: TestScene
+  levelName: JupiterSceneBeta
   loadSceneName: FiliesGame
   mainMenuScene: MainMenu
   panelMainMenu: {fileID: 406455046}

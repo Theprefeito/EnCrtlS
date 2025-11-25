@@ -22,8 +22,8 @@ public class TrasitionScript : MonoBehaviour
         
     }
 
-    void isOpen()
+    public void isClosed()
     {
-        animTransition.SetTrigger("isOpen");
+        animTransition.SetTrigger("isClose");
     }
 }
