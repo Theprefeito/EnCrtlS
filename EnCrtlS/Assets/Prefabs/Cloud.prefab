@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 664326866688152976}
   - component: {fileID: 6610235286338191636}
   - component: {fileID: 1059002969313243795}
+  - component: {fileID: 7358694256684663796}
   m_Layer: 6
   m_Name: Cloud
   m_TagString: Cloud
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_SortingLayerID: -1978892133
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8793639957104055765, guid: df47a44becca7b44688d56de39fbaaef, type: 3}
+  m_Sprite: {fileID: -8304602710553511799, guid: 2138ff926b3c4c14bb7be5dbc2bcaef3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,7 +134,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5692308, y: 0.26153848}
+    oldSize: {x: 1.0078125, y: 0.59375}
     newSize: {x: 0.37, y: 0.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -198,7 +199,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5692308, y: 0.26153848}
+    oldSize: {x: 1.0078125, y: 0.59375}
     newSize: {x: 0.37, y: 0.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -233,3 +234,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToDie: 6
   player: {fileID: 0}
+--- !u!95 &7358694256684663796
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384362619825583324}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9237abe4cc513884996eafc418ce2ecb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
