@@ -66,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip dashSound;
     public AudioClip jumpSound;
 
-
     void Start()
     {
         rigPlayer = GetComponent<Rigidbody2D>();
@@ -186,6 +185,7 @@ public class PlayerMovement : MonoBehaviour
         if(isWallTouch && direcao.x != 0f && coyoteCounter < coyoteTime)  //Serve para ele só dar slide se tiver presionando o botão da direção da parede
         {
             isSliding = true;
+            //Instantiate
         }
 
         else
